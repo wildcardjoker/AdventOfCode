@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day1_NotQuiteLisp
 // Created: 2015-12-02
-// Modified: 2015-12-02 1:02 PM
+// Modified: 2015-12-02 1:15 PM
 // Last modified by: MOORE Jason (jasonmo)
 #endregion
 
@@ -39,6 +39,8 @@ namespace Day1_NotQuiteLisp
                                         "))(",
                                         ")))",
                                         ")())())",
+                                        ")",
+                                        "()())",
                                         File.ReadAllText(inputFile)
                                     };
             foreach (string journey in journeys)
@@ -56,10 +58,33 @@ namespace Day1_NotQuiteLisp
             // Get number of floors to travel.
             int floorsUp = input.Count(x => x.Equals('('));
             int floorsDown = input.Count(x => x.Equals(')'));
-            int floor = floorsUp - floorsDown;
+            int pos = 1;
+            int currentFloor = 0;
+            bool enteredBasement = false;
 
-            Console.WriteLine("Santa travels up {0} floors and down {1} floors. Santa exits on floor {2}", floorsUp,
-                              floorsDown, floor);
+            foreach (char t in input)
+            {
+                if (t.Equals('('))
+                {
+                    currentFloor++;
+                }
+                else
+                {
+                    currentFloor--;
+                }
+                if (currentFloor == -1)
+                {
+                    enteredBasement = true;
+                    break;
+                }
+                pos++;
+            }
+            int floor = floorsUp - floorsDown;
+            Console.WriteLine(enteredBasement
+                                  ? $"Santa enters the basement at position {pos}."
+                                  : "Santa never reached the basement.");
+            Console.WriteLine(
+                $"Santa travels up {floorsUp} floors and down {floorsDown} floors. Santa exits on floor {floor}");
         }
     }
 }
