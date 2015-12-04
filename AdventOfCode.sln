@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day3_PerfectlySphericalHous
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibHouse", "LibHouse\LibHouse.csproj", "{354C7C04-D298-47E0-8CF2-419CDD6EA96E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libAdventCoin", "libAdventCoin\libAdventCoin.csproj", "{49AAA1EB-63A7-493C-8F5C-5FBC3F1D6322}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{354C7C04-D298-47E0-8CF2-419CDD6EA96E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{354C7C04-D298-47E0-8CF2-419CDD6EA96E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{354C7C04-D298-47E0-8CF2-419CDD6EA96E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49AAA1EB-63A7-493C-8F5C-5FBC3F1D6322}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49AAA1EB-63A7-493C-8F5C-5FBC3F1D6322}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49AAA1EB-63A7-493C-8F5C-5FBC3F1D6322}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49AAA1EB-63A7-493C-8F5C-5FBC3F1D6322}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
