@@ -2,7 +2,7 @@
 
 // AdventOfCode: libAdventCoin
 // Created: 2015-12-04
-// Modified: 2015-12-04 11:16 PM
+// Modified: 2015-12-04 11:24 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -32,6 +32,8 @@ namespace libAdventCoin
         public string Md5Hash => CalculateMD5Hash($"{Key}{Value}");
         public int? Value { get; set; }
         #endregion
+
+        public bool Match(string start) => Md5Hash.StartsWith(start);
 
         /// <summary>
         ///     Calculate MD5H hash
