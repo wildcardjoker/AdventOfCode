@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibHouse", "LibHouse\LibHou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libAdventCoin", "libAdventCoin\libAdventCoin.csproj", "{49AAA1EB-63A7-493C-8F5C-5FBC3F1D6322}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAdventCoin", "TestAdventCoin\TestAdventCoin.csproj", "{9144A343-F259-4470-B3ED-2749E58177BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day4_IdealStockingStuffer", "Day4_IdealStockingStuffer\Day4_IdealStockingStuffer.csproj", "{5F42B613-59CA-4C68-8400-AE3382565C6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{49AAA1EB-63A7-493C-8F5C-5FBC3F1D6322}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49AAA1EB-63A7-493C-8F5C-5FBC3F1D6322}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49AAA1EB-63A7-493C-8F5C-5FBC3F1D6322}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9144A343-F259-4470-B3ED-2749E58177BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9144A343-F259-4470-B3ED-2749E58177BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9144A343-F259-4470-B3ED-2749E58177BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9144A343-F259-4470-B3ED-2749E58177BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F42B613-59CA-4C68-8400-AE3382565C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F42B613-59CA-4C68-8400-AE3382565C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F42B613-59CA-4C68-8400-AE3382565C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F42B613-59CA-4C68-8400-AE3382565C6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
