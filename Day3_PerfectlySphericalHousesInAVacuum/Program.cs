@@ -26,14 +26,32 @@ namespace Day3_PerfectlySphericalHousesInAVacuum
         private static void Main(string[] args)
         {
             char[] directions = File.ReadAllText("input.txt").ToCharArray();
-            int index = 0;
+            int santaIndex = 0;
+            int roboSantaIndex = 0;
+            int i = 0;
             Houses.Add(new House(0, 0));
             DeliverPresent(Houses[0]);
-            foreach (House nextHouse in directions.Select(c => Houses[Move(Houses[index], c)]))
+            foreach (char c in directions)
             {
-                DeliverPresent(nextHouse);
-                index = Houses.IndexOf(nextHouse);
+                if (i%2==0)
+                {
+                    House nextHouse = Houses[Move(Houses[santaIndex], c, i)];
+                    DeliverPresent(nextHouse);
+                    santaIndex = Houses.IndexOf(nextHouse);
+                }
+                else
+                {
+                    House nextHouse = Houses[Move(Houses[roboSantaIndex], c,i)];
+                    DeliverPresent(nextHouse);
+                    roboSantaIndex = Houses.IndexOf(nextHouse);
+                }
+                i++;
             }
+            //foreach (House nextHouse in directions.Select(c => SantaHouses[Move(SantaHouses[index], c)]))
+            //{
+            //    DeliverPresent(nextHouse);
+            //    index = SantaHouses.IndexOf(nextHouse);
+            //}
 
             Console.WriteLine();
             Console.WriteLine($"{Houses.Count(h => h.Presents >= 1)} house(s) visited.");
@@ -50,7 +68,7 @@ namespace Day3_PerfectlySphericalHousesInAVacuum
             house.Presents++;
             int numPresents = house.Presents;
             Console.WriteLine(
-                $"House at address {house.X}/{house.Y} has {numPresents} present{(numPresents == 1 ? "" : "s")}.");
+                $" {numPresents} present{(numPresents == 1 ? "" : "s")} delivered to house.");
         }
 
         /// <summary>
@@ -58,8 +76,9 @@ namespace Day3_PerfectlySphericalHousesInAVacuum
         /// </summary>
         /// <param name="house">The House that Santa has just delivered a present to</param>
         /// <param name="direction">The direction Santa needs to go</param>
+        /// <param name="santaNumber">Indictaes if Santa or RoboSanta is delivering presents</param>
         /// <returns>Index of next house.</returns>
-        private static int Move(House house, char direction)
+        private static int Move(House house, char direction, int santaNumber)
         {
             int x = house.X;
             int y = house.Y;
@@ -86,19 +105,16 @@ namespace Day3_PerfectlySphericalHousesInAVacuum
                     break;
             }
 
-            Console.Write($"Santa needs to move {point} to {x}/{y}");
+            Console.Write($"{(santaNumber%2==0?"Santa":"RoboSanta")} moves {point} to {x}/{y}");
             int index = Houses.FindIndex(h => h.X == x && h.Y == y);
             if (index == -1)
             {
                 House newHouse = new House(x, y);
                 Houses.Add(newHouse);
                 index = Houses.IndexOf(newHouse);
-                Console.WriteLine(" (New house)");
+                Console.Write(" (New house)");
             }
-            else
-            {
-                Console.WriteLine();
-            }
+            Console.Write(".");
             return index;
         }
     }
