@@ -15,7 +15,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TestSanta
 {
     [TestClass]
-    public class TestSantaMethods
+    public class TestDay5Part1
     {
         [TestMethod]
         public void ValidateNiceString()
