@@ -2,7 +2,7 @@
 
 // AdventOfCode: TestSanta
 // Created: 2015-12-05
-// Modified: 2015-12-05 9:16 PM
+// Modified: 2015-12-05 9:48 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -42,10 +42,16 @@ namespace TestSanta
         public void TestIsNiceString2()
         {
             Santa santa = new Santa();
-            Assert.AreEqual(true, santa.IsNiceString2("qjhvhtzxzqqjkmpb"));
-            Assert.AreEqual(true, santa.IsNiceString2("xxyxx"));
-            Assert.AreNotEqual(true, santa.IsNiceString2("uurcxstgmygtbstg"));
-            Assert.AreNotEqual(true, santa.IsNiceString2("ieodomkazucvgmuy"));
+            List<string> equalList = new List<string> {"qjhvhtzxzqqjkmpb", "xxyxx"};
+            List<string> unequalList = new List<string> {"uurcxstgmygtbstg", "ieodomkazucvgmuy"};
+            foreach (string s in equalList)
+            {
+                Assert.AreEqual(true, santa.IsNiceString2(s), s);
+            }
+            foreach (string s in unequalList)
+            {
+                Assert.AreNotEqual(true, santa.IsNiceString2(s), s);
+            }
         }
     }
 }

@@ -2,7 +2,7 @@
 
 // AdventOfCode: libSanta
 // Created: 2015-12-05
-// Modified: 2015-12-05 9:21 PM
+// Modified: 2015-12-05 10:28 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -20,10 +20,7 @@ namespace libSanta
 {
     public partial class Santa
     {
-        public bool IsNiceString2(string s)
-        {
-            return MatchTwoLetters(s) && MatchRepeatingCharacter(s);
-        }
+        public bool IsNiceString2(string s) => MatchTwoLetters(s) && MatchRepeatingCharacter(s);
 
         /// <summary>
         ///     Does string contain at least one letter that appears twice in a row?
@@ -31,12 +28,12 @@ namespace libSanta
         /// <param name="s"></param>
         /// <returns></returns>
         public bool MatchTwoLetters(string s)
+            => DuplicateFound(new Regex(@"(\w\w)"), s) || DuplicateFound(new Regex(@"(\w)\1"), s);
+
+        private bool DuplicateFound(Regex regex, string s)
         {
-            Regex regex = new Regex(@"(\w\w)");
-            var matches = regex.Matches(s);
-            List<string> results = (from Match match in matches select match.Value).ToList();
-            var duplicates = results.GroupBy(m => m).SelectMany(grp => grp.Skip(1));
-            return duplicates.Any();
+            List<string> results = (from Match match in regex.Matches(s) select match.Value).ToList();
+            return results.GroupBy(m => m).SelectMany(grp => grp.Skip(1)).Any();
         }
 
         /// <summary>
