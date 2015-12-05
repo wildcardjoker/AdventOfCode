@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAdventCoin", "TestAdven
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day4_IdealStockingStuffer", "Day4_IdealStockingStuffer\Day4_IdealStockingStuffer.csproj", "{5F42B613-59CA-4C68-8400-AE3382565C6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libSanta", "libSanta\libSanta.csproj", "{D7FC2A37-A288-4501-9AFD-9E931E21131E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{5F42B613-59CA-4C68-8400-AE3382565C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F42B613-59CA-4C68-8400-AE3382565C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F42B613-59CA-4C68-8400-AE3382565C6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7FC2A37-A288-4501-9AFD-9E931E21131E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7FC2A37-A288-4501-9AFD-9E931E21131E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7FC2A37-A288-4501-9AFD-9E931E21131E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7FC2A37-A288-4501-9AFD-9E931E21131E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
