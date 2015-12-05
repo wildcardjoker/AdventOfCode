@@ -26,7 +26,10 @@ namespace Day5_DoesntHeHaveInternElvesForThis
             List<string> list = File.ReadAllLines("input.txt").ToList();
             int niceStrings = list.Count(x => santa.IsNiceString(x));
             Console.WriteLine(
-                $"{list.Count} strings processed. {list.Count - niceStrings} strings marked as naughty. {niceStrings} strings are nice");
+                $"Part One: {list.Count} strings processed. {list.Count - niceStrings} strings marked as naughty. {niceStrings} strings are nice");
+            niceStrings = list.Count(x => santa.IsNiceString2(x));
+            Console.WriteLine(
+                $"Part Two: {list.Count} strings processed. {list.Count - niceStrings} strings marked as naughty. {niceStrings} strings are nice");
             Console.Write("Press any key...");
             Console.ReadKey();
         }
