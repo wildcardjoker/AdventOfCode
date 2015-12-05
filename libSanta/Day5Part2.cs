@@ -2,7 +2,7 @@
 
 // AdventOfCode: libSanta
 // Created: 2015-12-05
-// Modified: 2015-12-05 10:28 PM
+// Modified: 2015-12-05 11:13 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -10,8 +10,6 @@
 #endregion
 
 #region Using Directives
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 #endregion
@@ -27,14 +25,16 @@ namespace libSanta
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
+        /// <remarks>
+        ///     So close, yet so far! Previous regular expression attempts would match some (not all) patterns,
+        ///     but returned FALSE for some matches because I checked for more than one match.
+        ///     The regular expression matches both pairs as a single match, causing the method to return fewer matches than I
+        ///     should have done.
+        ///     Thanks to https://www.reddit.com/user/gegtik for his regex pattern
+        ///     https://www.reddit.com/r/adventofcode/comments/3viazx/day_5_solutions/cxnt4go.
+        /// </remarks>
         public bool MatchTwoLetters(string s)
-            => DuplicateFound(new Regex(@"(\w\w)"), s) || DuplicateFound(new Regex(@"(\w)\1"), s);
-
-        private bool DuplicateFound(Regex regex, string s)
-        {
-            List<string> results = (from Match match in regex.Matches(s) select match.Value).ToList();
-            return results.GroupBy(m => m).SelectMany(grp => grp.Skip(1)).Any();
-        }
+            => new Regex(@"(\w\w).*\1").Match(s).Success;
 
         /// <summary>
         ///     Match a string character between two matching characters.
