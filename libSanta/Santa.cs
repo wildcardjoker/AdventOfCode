@@ -2,7 +2,7 @@
 
 // AdventOfCode: libSanta
 // Created: 2015-12-05
-// Modified: 2015-12-05 1:54 PM
+// Modified: 2015-12-05 2:06 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -34,7 +34,7 @@ namespace libSanta
                 }
             }
             return doubleLetter && s.Count(c => _vowels.Contains(c)) >= 3 &&
-                   _badStrings.Any(x => _badStrings.Contains(x));
+                   !_badStrings.Any(x => _badStrings.Contains(x));
         }
     }
 }
