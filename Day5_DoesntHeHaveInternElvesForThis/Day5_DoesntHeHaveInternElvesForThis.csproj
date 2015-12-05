@@ -50,7 +50,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Puzzle.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\libSanta\libSanta.csproj">
+      <Project>{d7fc2a37-a288-4501-9afd-9e931e21131e}</Project>
+      <Name>libSanta</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

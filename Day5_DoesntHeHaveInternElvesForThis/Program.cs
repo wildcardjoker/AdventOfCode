@@ -1,15 +1,34 @@
-﻿using System;
+﻿#region Information
+
+// AdventOfCode: Day5_DoesntHeHaveInternElvesForThis
+// Created: 2015-12-05
+// Modified: 2015-12-05 2:18 PM
+// Last modified by: Jason Moore (Jason)
+#endregion
+
+#region Using Directives
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using libSanta;
+
+#endregion
 
 namespace Day5_DoesntHeHaveInternElvesForThis
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+            // Part 1
+            Santa santa = new Santa();
+            List<string> list = File.ReadAllLines("input.txt").ToList();
+            int niceStrings = list.Count(x => santa.IsNiceString(x));
+            Console.WriteLine(
+                $"{list.Count} strings processed. {list.Count - niceStrings} strings marked as naughty. {niceStrings} strings are nice");
+            Console.Write("Press any key...");
+            Console.ReadKey();
         }
     }
 }
