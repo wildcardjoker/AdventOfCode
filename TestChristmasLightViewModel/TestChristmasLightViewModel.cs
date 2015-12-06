@@ -2,7 +2,7 @@
 
 // AdventOfCode: TestChristmasLightViewModel
 // Created: 2015-12-06
-// Modified: 2015-12-06 10:33 PM
+// Modified: 2015-12-07 6:27 AM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -72,7 +72,7 @@ namespace TestChristmasLightViewModel
         }
 
         [TestMethod]
-        public void TestFollowInstructions()
+        public void TestTurnOnAllLights()
         {
             ChristmasLightsGrid grid = new ChristmasLightsGrid();
             int columns = 1000;
@@ -86,5 +86,62 @@ namespace TestChristmasLightViewModel
             int actual = grid.Lights.Count(x => x.Lit);
             Assert.AreEqual(columns * rows, actual, $"Some lights failed to turn on. Total lights on: {actual}.");
         }
+
+        [TestMethod]
+        public void TestTurnOffAllLights()
+        {
+            ChristmasLightsGrid grid = new ChristmasLightsGrid();
+            int columns = 1000;
+            int rows = columns;
+            List<string> instructionsList = new List<string>
+                                            {
+                                                "turn on 0,0 through 999,999",
+                                                "turn off 0,0 through 999,999"
+                                            };
+            grid.Columns = columns;
+            grid.Rows = rows;
+            grid.Instructions = instructionsList;
+            grid.GenerateGridCommand.Execute(null);
+            grid.FollowInstructionsCommand.Execute(null);
+            int actual = grid.Lights.Count(x => x.Lit);
+            Assert.AreEqual(0, actual, $"Some lights failed to turn off. Total lights on: {actual}.");
+        }
+
+        [TestMethod]
+        public void TestToggleLights()
+        {
+            ChristmasLightsGrid grid = new ChristmasLightsGrid();
+            int columns = 1000;
+            int rows = columns;
+            List<string> instructionsList = new List<string>
+                                            {
+                                                "turn on 0,0 through 999,999",
+                                                "toggle 0,0 through 499,499"
+                                            };
+            grid.Columns = columns;
+            grid.Rows = rows;
+            grid.Instructions = instructionsList;
+            grid.GenerateGridCommand.Execute(null);
+            grid.FollowInstructionsCommand.Execute(null);
+            int actual = grid.Lights.Count(x => x.Lit);
+            Assert.AreEqual(750000, actual, $"Some lights failed to toggle. Total lights on: {actual}.");
+        }
+
+        [TestMethod]
+        public void TestToggle1000Lights()
+        {
+            ChristmasLightsGrid grid = new ChristmasLightsGrid();
+            int columns = 1000;
+            int rows = columns;
+            List<string> instructionsList = new List<string> { "toggle 0,0 through 999,0" };
+            grid.Columns = columns;
+            grid.Rows = rows;
+            grid.Instructions = instructionsList;
+            grid.GenerateGridCommand.Execute(null);
+            grid.FollowInstructionsCommand.Execute(null);
+            int actual = grid.Lights.Count(x => x.Lit);
+            Assert.AreEqual(1000, actual, $"Some lights failed to turn on. Total lights on: {actual}.");
+        }
+
     }
 }
