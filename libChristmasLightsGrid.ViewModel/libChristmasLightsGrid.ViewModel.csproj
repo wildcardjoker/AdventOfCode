@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChristmasLightsGrid.cs" />
+    <Compile Include="Commands.cs" />
+    <Compile Include="Methods.cs" />
+    <Compile Include="Properties.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -48,6 +51,10 @@
     <ProjectReference Include="..\libChristmasLight\libChristmasLight.csproj">
       <Project>{30ba6b70-522a-4ea0-86d0-e032e87dacf1}</Project>
       <Name>libChristmasLight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libRelayCommand\libRelayCommand.csproj">
+      <Project>{77c8ecd2-4130-4250-b87b-890872fd3a91}</Project>
+      <Name>libRelayCommand</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
