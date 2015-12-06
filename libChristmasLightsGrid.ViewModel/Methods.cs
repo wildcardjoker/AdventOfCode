@@ -2,13 +2,14 @@
 
 // AdventOfCode: libChristmasLightsGrid.ViewModel
 // Created: 2015-12-06
-// Modified: 2015-12-06 10:13 PM
+// Modified: 2015-12-07 6:17 AM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
 #region Using Directives
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using libChristmasLight;
 
@@ -72,15 +73,24 @@ namespace libChristmasLightsGrid.ViewModel
                 throw new ApplicationException(
                     $"Not enough matches found in instruction. Expected 2, found {matches.Count}. Input string {s}.");
             }
+
+            IEnumerable<ChristmasLight> range =
+                Lights.Where(
+                    light =>
+                    light.PosX <= RangeToModify.EndX && light.PosX >= RangeToModify.StartX &&
+                    light.PosY >= RangeToModify.StartY && light.PosY <= RangeToModify.EndY);
+
             string step = stepRegex.Match(s).Value;
             switch (step.ToLower().Trim())
             {
                 case "turn on":
-                    TurnOnRange();
+                    TurnOnRange(range);
                     break;
                 case "turn off":
+                    TurnOffRange(range);
                     break;
                 case "toggle":
+                    ToggleRange(range);
                     break;
                 default:
                     throw new ApplicationException($"{InvalidInstruction}: {step}");
