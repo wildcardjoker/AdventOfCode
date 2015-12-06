@@ -2,7 +2,7 @@
 
 // AdventOfCode: libChristmasLightsGrid.ViewModel
 // Created: 2015-12-06
-// Modified: 2015-12-06 7:16 PM
+// Modified: 2015-12-06 10:00 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -24,6 +24,8 @@ namespace libChristmasLightsGrid.ViewModel
             coordinates.AddRange(startCoordinates.Split(','));
             coordinates.AddRange(endCoordinates.Split(','));
         }
+
+        public Range(IReadOnlyList<int> range) : this(range[0], range[1], range[2], range[3]) {}
 
         public Range(int startX, int startY, int endX, int endY)
         {
