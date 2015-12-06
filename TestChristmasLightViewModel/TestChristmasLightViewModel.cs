@@ -2,12 +2,14 @@
 
 // AdventOfCode: TestChristmasLightViewModel
 // Created: 2015-12-06
-// Modified: 2015-12-06 9:11 PM
+// Modified: 2015-12-06 10:33 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
 #region Using Directives
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using libChristmasLightsGrid.ViewModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -66,8 +68,23 @@ namespace TestChristmasLightViewModel
             grid.Columns = columns;
             grid.Rows = rows;
             grid.GenerateGridCommand.Execute(null);
-            Assert.AreEqual(columns*rows, grid.Lights.Count, "Grid cell count do not match.");
+            Assert.AreEqual(columns * rows, grid.Lights.Count, "Grid cell count do not match.");
+        }
 
+        [TestMethod]
+        public void TestFollowInstructions()
+        {
+            ChristmasLightsGrid grid = new ChristmasLightsGrid();
+            int columns = 1000;
+            int rows = columns;
+            List<string> instructionsList = new List<string> {"turn on 0,0 through 999,999"};
+            grid.Columns = columns;
+            grid.Rows = rows;
+            grid.Instructions = instructionsList;
+            grid.GenerateGridCommand.Execute(null);
+            grid.FollowInstructionsCommand.Execute(null);
+            int actual = grid.Lights.Count(x => x.Lit);
+            Assert.AreEqual(columns * rows, actual, $"Some lights failed to turn on. Total lights on: {actual}.");
         }
     }
 }
