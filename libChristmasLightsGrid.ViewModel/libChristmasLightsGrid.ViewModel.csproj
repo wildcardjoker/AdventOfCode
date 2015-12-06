@@ -43,6 +43,7 @@
     <Compile Include="ChristmasLightsGrid.cs" />
     <Compile Include="Commands.cs" />
     <Compile Include="Methods.cs" />
+    <Compile Include="PerformInstructions.cs" />
     <Compile Include="Properties.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
