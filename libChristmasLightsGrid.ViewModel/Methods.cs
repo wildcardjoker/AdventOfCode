@@ -2,12 +2,13 @@
 
 // AdventOfCode: libChristmasLightsGrid.ViewModel
 // Created: 2015-12-06
-// Modified: 2015-12-06 9:04 PM
+// Modified: 2015-12-06 9:27 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
 #region Using Directives
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using libChristmasLight;
 
@@ -26,6 +27,7 @@ namespace libChristmasLightsGrid.ViewModel
         /// </summary>
         private void CreateGrid()
         {
+            Lights = new List<ChristmasLight>();
             for (int i = 0; i < Columns; i++)
             {
                 for (int j = 0; j < Rows; j++)
