@@ -2,7 +2,7 @@
 
 // AdventOfCode: libChristmasLightsGrid.ViewModel
 // Created: 2015-12-06
-// Modified: 2015-12-06 9:27 PM
+// Modified: 2015-12-06 10:13 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -55,12 +55,28 @@ namespace libChristmasLightsGrid.ViewModel
         private void PerformInstruction(string s)
         {
             // turn on 0,0 through 999,999
-            Regex stepRegex = new Regex(@"^\D"); // Get instruction
+            Regex stepRegex = new Regex(@"^\D+"); // Get instruction
             Regex rangeRegex = new Regex(@"[\D+]\d+"); // Get first and last range.
+            MatchCollection matches = rangeRegex.Matches(s);
+            List<int> rangeInts = new List<int>();
+            for (int i = 0; i < matches.Count; i++)
+            {
+                rangeInts.Add(Convert.ToInt32(matches[i].Value.Replace(',', ' ').Replace(" ", "")));
+            }
+            if (rangeInts.Count == 4)
+            {
+                RangeToModify = new Range(rangeInts);
+            }
+            else
+            {
+                throw new ApplicationException(
+                    $"Not enough matches found in instruction. Expected 2, found {matches.Count}. Input string {s}.");
+            }
             string step = stepRegex.Match(s).Value;
-            switch (step.ToLower())
+            switch (step.ToLower().Trim())
             {
                 case "turn on":
+                    TurnOnRange();
                     break;
                 case "turn off":
                     break;
@@ -68,16 +84,6 @@ namespace libChristmasLightsGrid.ViewModel
                     break;
                 default:
                     throw new ApplicationException($"{InvalidInstruction}: {step}");
-            }
-            MatchCollection matches = rangeRegex.Matches(s);
-            if (matches.Count == 2)
-            {
-                RangeToModify = new Range(matches[0].Value, matches[1].Value);
-            }
-            else
-            {
-                throw new ApplicationException(
-                    $"Not enough matches found in instruction. Expected 2, found {matches.Count}. Input string {s}.");
             }
         }
     }
