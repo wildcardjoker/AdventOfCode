@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace libChristmasLightsGrid.ViewModel
 {
-    class Range
+    public class Range
     {
         #region Constructors
         public Range() : this(0, 0, 0, 0) {}
