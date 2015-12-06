@@ -2,7 +2,7 @@
 
 // AdventOfCode: libChristmasLightsGrid.ViewModel
 // Created: 2015-12-06
-// Modified: 2015-12-06 6:50 PM
+// Modified: 2015-12-06 9:04 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -20,6 +20,8 @@ namespace libChristmasLightsGrid.ViewModel
         #region  Fields
         public const string ArgumentOutOfRangeMessage =
             "Value is out of range. Acceptable values are any positive integer.";
+
+        private List<string> _instructions;
         #endregion
 
         #region Properties
@@ -44,6 +46,20 @@ namespace libChristmasLightsGrid.ViewModel
             }
         }
 
+        public List<string> Instructions
+        {
+            get { return _instructions; }
+            set
+            {
+                if (Equals(value, _instructions))
+                {
+                    return;
+                }
+                _instructions = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         ///     List representing a Grid of Christmas Lights
         /// </summary>
@@ -60,6 +76,8 @@ namespace libChristmasLightsGrid.ViewModel
                 OnPropertyChanged();
             }
         }
+
+        public Range RangeToModify { get; set; }
 
         /// <summary>
         ///     Number of Rows in Grid
