@@ -2,7 +2,7 @@
 
 // AdventOfCode: libChristmasLight
 // Created: 2015-12-06
-// Modified: 2015-12-06 5:08 PM
+// Modified: 2015-12-06 5:23 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -21,6 +21,16 @@ namespace libChristmasLight
         private bool _lit;
         private int _posX;
         private int _posY;
+        #endregion
+
+        #region Constructors
+        public ChristmasLight() : this(0, 0) {}
+
+        public ChristmasLight(int x, int y)
+        {
+            PosX = x;
+            PosY = y;
+        }
         #endregion
 
         #region Properties
