@@ -2,7 +2,7 @@
 
 // AdventOfCode: TestChristmasLight
 // Created: 2015-12-06
-// Modified: 2015-12-06 5:49 PM
+// Modified: 2015-12-06 6:00 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -26,6 +26,14 @@ namespace TestChristmasLight
         {
             Assert.AreEqual(0, _light.PosX);
             Assert.AreEqual(0, _light.PosY);
+        }
+
+        [TestMethod]
+        public void TestCustomPosition()
+        {
+            ChristmasLight light = new ChristmasLight(5, 9);
+            Assert.AreEqual(5, light.PosX);
+            Assert.AreEqual(9, light.PosY);
         }
 
         [TestMethod]
