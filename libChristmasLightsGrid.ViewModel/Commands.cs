@@ -2,7 +2,7 @@
 
 // AdventOfCode: libChristmasLightsGrid.ViewModel
 // Created: 2015-12-06
-// Modified: 2015-12-06 6:37 PM
+// Modified: 2015-12-06 9:09 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -17,10 +17,21 @@ namespace libChristmasLightsGrid.ViewModel
     public partial class ChristmasLightsGrid
     {
         #region  Fields
+        private ICommand _followInstructionsCommand;
         private ICommand _generateGridCommand;
         #endregion
 
         #region Properties
+        public ICommand FollowInstructionsCommand
+        {
+            get
+            {
+                return
+                    _followInstructionsCommand ?? (_followInstructionsCommand =
+                                                   new RelayCommand(param => PerformInstructions()));
+            }
+        }
+
         public ICommand GenerateGridCommand
         {
             get
