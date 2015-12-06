@@ -58,6 +58,10 @@
       <Project>{86fbe802-e4f9-4e83-911f-0190cd5f142b}</Project>
       <Name>libChristmasLightsGrid.ViewModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\libChristmasLight\libChristmasLight.csproj">
+      <Project>{30ba6b70-522a-4ea0-86d0-e032e87dacf1}</Project>
+      <Name>libChristmasLight</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

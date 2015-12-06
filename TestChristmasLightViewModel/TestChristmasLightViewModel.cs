@@ -2,7 +2,7 @@
 
 // AdventOfCode: TestChristmasLightViewModel
 // Created: 2015-12-06
-// Modified: 2015-12-06 6:51 PM
+// Modified: 2015-12-06 9:11 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -33,7 +33,7 @@ namespace TestChristmasLightViewModel
         }
 
         [TestMethod]
-        public void TestGenerateGrid()
+        public void TestSetGridDimensions()
         {
             ChristmasLightsGrid grid = new ChristmasLightsGrid();
             int columns = 10;
@@ -55,6 +55,19 @@ namespace TestChristmasLightViewModel
             {
                 StringAssert.Contains(e.Message, ChristmasLightsGrid.ArgumentOutOfRangeMessage);
             }
+        }
+
+        [TestMethod]
+        public void TestCreateGrid()
+        {
+            ChristmasLightsGrid grid = new ChristmasLightsGrid();
+            int columns = 10;
+            int rows = 10;
+            grid.Columns = columns;
+            grid.Rows = rows;
+            grid.GenerateGridCommand.Execute(null);
+            Assert.AreEqual(columns*rows, grid.Lights.Count, "Grid cell count do not match.");
+
         }
     }
 }
