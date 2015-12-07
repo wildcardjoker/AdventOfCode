@@ -19,10 +19,10 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Columns (X)" />
-            <TextBox Text="{Binding Columns}" MinWidth="20" />
-            <TextBlock Text="Rows (Y)" />
-            <TextBox Text="{Binding Rows}" MinWidth="20" />
+            <TextBlock Text="Grid Size (X and Y)" />
+            <TextBox Text="{Binding Columns}" MinWidth="35" />
+            <!--<TextBlock Text="Rows (Y)" />
+            <TextBox Text="{Binding Rows}" MinWidth="20" />-->
             <Button Content="Generate Grid" Click="GenerateGrid_Click" />
             <Button Content="Highlight Corners" Command="{Binding HighlightCornersCommand}" />
             <Button Content="Follow Santa's Instructions" />

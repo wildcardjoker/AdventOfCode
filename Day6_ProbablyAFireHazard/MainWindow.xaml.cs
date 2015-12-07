@@ -2,11 +2,13 @@
 
 // AdventOfCode: Day6_ProbablyAFireHazard
 // Created: 2015-12-07
-// Modified: 2015-12-07 1:16 PM
-// Last modified by: MOORE Jason (jasonmo)
+// Modified: 2015-12-07 6:24 PM
+// Last modified by: Jason Moore (Jason)
 #endregion
 
 #region Using Directives
+using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -32,16 +34,16 @@ namespace Day6_ProbablyAFireHazard
         private void GenerateGrid_Click(object sender, RoutedEventArgs e)
         {
             ChristmasLightsGrid dc = (ChristmasLightsGrid) DataContext;
-
+            dc.Rows = dc.Columns;
             dc.GenerateGridCommand.Execute(null);
             for (int y = 0; y < dc.Rows; y++)
             {
                 LightGrid.RowDefinitions.Add(new RowDefinition {Height = new GridLength(2)});
-            }
-            for (int x = 0; x < dc.Columns; x++)
-            {
                 LightGrid.ColumnDefinitions.Add(new ColumnDefinition {Width = new GridLength(2)});
             }
+
+            int i = 0;
+            Stopwatch stopwatch = Stopwatch.StartNew();
             for (int x = 0; x < dc.Columns; x++)
             {
                 for (int y = 0; y < dc.Rows; y++)
@@ -52,7 +54,7 @@ namespace Day6_ProbablyAFireHazard
                                     {
                                         Path =
                                             new PropertyPath(
-                                            $"Lights[{dc.Lights.FindIndex(l => l.PosX == x && l.PosY == y)}].Lit"),
+                                            $"Lights[{i}].Lit"),
                                         Source = dc,
                                         Converter = new BoolToBrushConverter(),
                                         UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
@@ -61,8 +63,12 @@ namespace Day6_ProbablyAFireHazard
                     Grid.SetColumn(cell, x);
                     Grid.SetRow(cell, y);
                     LightGrid.Children.Add(cell);
+                    i++;
                 }
             }
+            stopwatch.Stop();
+            TimeSpan span = new TimeSpan(stopwatch.ElapsedTicks);
+            Console.WriteLine($"Time taken for {dc.Columns}x{dc.Rows} grid: {span}");
         }
     }
 }
