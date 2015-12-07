@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libRelayCommand", "libRelay
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Tests", "Unit Tests", "{1110CB56-460E-47BF-AA08-9201BBBAA067}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day6_ProbablyAFireHazard", "Day6_ProbablyAFireHazard\Day6_ProbablyAFireHazard.csproj", "{6A27758B-A133-49ED-ADDB-9C636CEE968B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,10 @@ Global
 		{77C8ECD2-4130-4250-B87B-890872FD3A91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77C8ECD2-4130-4250-B87B-890872FD3A91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77C8ECD2-4130-4250-B87B-890872FD3A91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A27758B-A133-49ED-ADDB-9C636CEE968B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A27758B-A133-49ED-ADDB-9C636CEE968B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A27758B-A133-49ED-ADDB-9C636CEE968B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A27758B-A133-49ED-ADDB-9C636CEE968B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

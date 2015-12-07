@@ -1,9 +1,9 @@
 ﻿#region Information
 
 // AdventOfCode: libChristmasLightsGrid.ViewModel
-// Created: 2015-12-06
-// Modified: 2015-12-07 6:17 AM
-// Last modified by: Jason Moore (Jason)
+// Created: 2015-12-07
+// Modified: 2015-12-07 12:21 PM
+// Last modified by: MOORE Jason (jasonmo)
 #endregion
 
 #region Using Directives
@@ -35,6 +35,15 @@ namespace libChristmasLightsGrid.ViewModel
                 {
                     Lights.Add(new ChristmasLight(i, j));
                 }
+            }
+        }
+
+        private void HighlightCorners()
+        {
+            var lights = Lights.Where(l => (l.PosX == 0 || l.PosX == Columns - 1) && (l.PosY == 0 || l.PosY == Rows - 1));
+            foreach (ChristmasLight light in lights)
+            {
+                light.TurnOn();
             }
         }
 
