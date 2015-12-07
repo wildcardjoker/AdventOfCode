@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day6_ProbablyAFireHazard
 // Created: 2015-12-07
-// Modified: 2015-12-07 1:02 PM
+// Modified: 2015-12-07 1:16 PM
 // Last modified by: MOORE Jason (jasonmo)
 #endregion
 
@@ -36,25 +36,25 @@ namespace Day6_ProbablyAFireHazard
             dc.GenerateGridCommand.Execute(null);
             for (int y = 0; y < dc.Rows; y++)
             {
-                LightGrid.RowDefinitions.Add(new RowDefinition());
+                LightGrid.RowDefinitions.Add(new RowDefinition {Height = new GridLength(2)});
             }
             for (int x = 0; x < dc.Columns; x++)
             {
-                LightGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                LightGrid.ColumnDefinitions.Add(new ColumnDefinition {Width = new GridLength(2)});
             }
             for (int x = 0; x < dc.Columns; x++)
             {
                 for (int y = 0; y < dc.Rows; y++)
                 {
-                    TextBlock cell = new TextBlock();
-                    cell.SetBinding(TextBlock.TextProperty,
+                    Border cell = new Border();
+                    cell.SetBinding(Border.BackgroundProperty,
                                     new Binding
                                     {
                                         Path =
                                             new PropertyPath(
                                             $"Lights[{dc.Lights.FindIndex(l => l.PosX == x && l.PosY == y)}].Lit"),
                                         Source = dc,
-                                        Converter = new BoolToStringConverter(),
+                                        Converter = new BoolToBrushConverter(),
                                         UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
                                         IsAsync = true
                                     });

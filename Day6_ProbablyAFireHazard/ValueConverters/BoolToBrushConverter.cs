@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day6_ProbablyAFireHazard
 // Created: 2015-12-07
-// Modified: 2015-12-07 12:32 PM
+// Modified: 2015-12-07 1:10 PM
 // Last modified by: MOORE Jason (jasonmo)
 #endregion
 
@@ -10,12 +10,13 @@
 using System;
 using System.Globalization;
 using System.Windows.Data;
+using System.Windows.Media;
 
 #endregion
 
 namespace Day6_ProbablyAFireHazard.ValueConverters
 {
-    class BoolToStringConverter : IValueConverter
+    class BoolToBrushConverter : IValueConverter
     {
         #region Implementation of IValueConverter
         /// <summary>
@@ -30,7 +31,7 @@ namespace Day6_ProbablyAFireHazard.ValueConverters
         /// <param name="culture">The culture to use in the converter.</param>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool) value ? "1" : "0";
+            return new SolidColorBrush {Color = (bool) value ? Colors.Red : Colors.AntiqueWhite};
         }
 
         /// <summary>
