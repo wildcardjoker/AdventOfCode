@@ -1,9 +1,9 @@
 ﻿#region Information
 
 // AdventOfCode: libChristmasLightsGrid.ViewModel
-// Created: 2015-12-07
-// Modified: 2015-12-07 12:21 PM
-// Last modified by: MOORE Jason (jasonmo)
+// Created: 2015-12-06
+// Modified: 2015-12-07 8:24 PM
+// Last modified by: Jason Moore (Jason)
 #endregion
 
 #region Using Directives
@@ -64,7 +64,7 @@ namespace libChristmasLightsGrid.ViewModel
         /// <param name="s">Instruction string to perform</param>
         private void PerformInstruction(string s)
         {
-            // turn on 0,0 through 999,999
+            // example: turn on 0,0 through 999,999
             Regex stepRegex = new Regex(@"^\D+"); // Get instruction
             Regex rangeRegex = new Regex(@"[\D+]\d+"); // Get first and last range.
             MatchCollection matches = rangeRegex.Matches(s);

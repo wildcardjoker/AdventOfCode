@@ -2,7 +2,7 @@
 
 // AdventOfCode: libChristmasLightsGrid.ViewModel
 // Created: 2015-12-06
-// Modified: 2015-12-06 6:38 PM
+// Modified: 2015-12-07 8:12 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -23,6 +23,13 @@ namespace libChristmasLightsGrid.ViewModel
         private int _columns;
         private List<ChristmasLight> _lights;
         private int _rows;
+        #endregion
+
+        #region Constructors
+        public ChristmasLightsGrid()
+        {
+            Lights = new List<ChristmasLight>();
+        }
         #endregion
 
         #region INotifyPropertyChanged Members
