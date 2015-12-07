@@ -1,9 +1,9 @@
 ﻿#region Information
 
 // AdventOfCode: libChristmasLightsGrid.ViewModel
-// Created: 2015-12-07
-// Modified: 2015-12-07 12:38 PM
-// Last modified by: MOORE Jason (jasonmo)
+// Created: 2015-12-06
+// Modified: 2015-12-07 8:48 PM
+// Last modified by: Jason Moore (Jason)
 #endregion
 
 #region Using Directives
@@ -17,12 +17,23 @@ namespace libChristmasLightsGrid.ViewModel
     public partial class ChristmasLightsGrid
     {
         #region  Fields
+        private ICommand _adjustBrightnessInstructionsCommand;
         private ICommand _followInstructionsCommand;
         private ICommand _generateGridCommand;
         private ICommand _highlightCornersCommand;
         #endregion
 
         #region Properties
+        public ICommand AdjustBrightnessInstructionsCommand
+        {
+            get
+            {
+                return
+                    _adjustBrightnessInstructionsCommand ?? (_adjustBrightnessInstructionsCommand =
+                                                             new RelayCommand(param => PerformBrightnessInstructions()));
+            }
+        }
+
         public ICommand FollowInstructionsCommand
         {
             get

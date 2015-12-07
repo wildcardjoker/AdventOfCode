@@ -2,7 +2,7 @@
 
 // AdventOfCode: libChristmasLight
 // Created: 2015-12-06
-// Modified: 2015-12-06 5:23 PM
+// Modified: 2015-12-07 8:39 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -18,6 +18,7 @@ namespace libChristmasLight
     public class ChristmasLight : INotifyPropertyChanged
     {
         #region  Fields
+        private int _brightness;
         private bool _lit;
         private int _posX;
         private int _posY;
@@ -34,6 +35,20 @@ namespace libChristmasLight
         #endregion
 
         #region Properties
+        public int Brightness
+        {
+            get { return _brightness; }
+            set
+            {
+                if (value == _brightness)
+                {
+                    return;
+                }
+                _brightness = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         ///     Indicates if Light is turned on
         /// </summary>
@@ -104,6 +119,19 @@ namespace libChristmasLight
         ///     Toggle light - turn On if Off, turn Off if On
         /// </summary>
         public void Toggle() => Lit = !Lit;
+
+        public void TurnOnBrightness() => Brightness++;
+
+        public void TurnOffBrightness()
+        {
+            Brightness--;
+            if (Brightness < 0)
+            {
+                Brightness = 0;
+            }
+        }
+
+        public void ToggleBrightness() => Brightness += 2;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

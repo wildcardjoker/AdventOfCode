@@ -2,7 +2,7 @@
 
 // AdventOfCode: libChristmasLightsGrid.ViewModel
 // Created: 2015-12-06
-// Modified: 2015-12-07 8:24 PM
+// Modified: 2015-12-07 8:50 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -54,7 +54,18 @@ namespace libChristmasLightsGrid.ViewModel
         {
             foreach (string instruction in Instructions)
             {
-                PerformInstruction(instruction);
+                FollowInstruction(instruction);
+            }
+        }
+
+        /// <summary>
+        ///     Perform a given set of instructions
+        /// </summary>
+        private void PerformBrightnessInstructions()
+        {
+            foreach (string instruction in Instructions)
+            {
+                FollowBrightnessInstruction(instruction);
             }
         }
 
@@ -62,7 +73,7 @@ namespace libChristmasLightsGrid.ViewModel
         ///     Perform a given instruction
         /// </summary>
         /// <param name="s">Instruction string to perform</param>
-        private void PerformInstruction(string s)
+        private void FollowInstruction(string s)
         {
             // example: turn on 0,0 through 999,999
             Regex stepRegex = new Regex(@"^\D+"); // Get instruction
@@ -100,6 +111,60 @@ namespace libChristmasLightsGrid.ViewModel
                     break;
                 case "toggle":
                     ToggleRange(range);
+                    break;
+                default:
+                    throw new ApplicationException($"{InvalidInstruction}: {step}");
+            }
+        }
+
+        /// <summary>
+        ///     Perform a given instruction
+        /// </summary>
+        /// <param name="s">Instruction string to perform</param>
+        /// <remarks>
+        ///     Possible instructions are:
+        ///     Turn on:    increate brightness of light by 1
+        ///     Turn off:   descrease brightness of light by 1, to a minimum of 0
+        ///     Toggle:     increase the brightness of those lights by 2
+        /// </remarks>
+        private void FollowBrightnessInstruction(string s)
+        {
+            // example: turn on 0,0 through 999,999
+            Regex stepRegex = new Regex(@"^\D+"); // Get instruction
+            Regex rangeRegex = new Regex(@"[\D+]\d+"); // Get first and last range.
+            MatchCollection matches = rangeRegex.Matches(s);
+            List<int> rangeInts = new List<int>();
+            for (int i = 0; i < matches.Count; i++)
+            {
+                rangeInts.Add(Convert.ToInt32(matches[i].Value.Replace(',', ' ').Replace(" ", "")));
+            }
+            if (rangeInts.Count == 4)
+            {
+                RangeToModify = new Range(rangeInts);
+            }
+            else
+            {
+                throw new ApplicationException(
+                    $"Not enough matches found in instruction. Expected 2, found {matches.Count}. Input string {s}.");
+            }
+
+            IEnumerable<ChristmasLight> range =
+                Lights.Where(
+                    light =>
+                    light.PosX <= RangeToModify.EndX && light.PosX >= RangeToModify.StartX &&
+                    light.PosY >= RangeToModify.StartY && light.PosY <= RangeToModify.EndY);
+
+            string step = stepRegex.Match(s).Value;
+            switch (step.ToLower().Trim())
+            {
+                case "turn on":
+                    TurnOnBrightnessRange(range);
+                    break;
+                case "turn off":
+                    TurnOffBrightnessRange(range);
+                    break;
+                case "toggle":
+                    ToggleBrightnessRange(range);
                     break;
                 default:
                     throw new ApplicationException($"{InvalidInstruction}: {step}");

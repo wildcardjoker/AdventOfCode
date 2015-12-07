@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day6_ProbablyAFirerHazard_Console
 // Created: 2015-12-07
-// Modified: 2015-12-07 8:24 PM
+// Modified: 2015-12-07 8:53 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -28,38 +28,43 @@ namespace Day6_ProbablyAFirerHazard_Console
         {
             int cols = 1000;
             int rows = cols;
+            List<string> instructionList = File.ReadAllLines("input.txt").ToList();
 
-            //List<string> instructions = new List<string>
-            //                            {
-            //                                "turn on 0,0 through 999,999",
-            //                                "toggle 0,0 through 999,0",
-            //                                "turn off 499,499 through 500,500"
-            //                            };
+            //new List<string>
+            //{
+            //    "toggle 0,0 through 999,999"
+            //};
             _grid = new ChristmasLightsGrid
                     {
                         Columns = cols,
                         Rows = rows,
                         Lights = new List<ChristmasLight>()
                     };
-            _grid.GenerateGridCommand.Execute(null);
-            Console.WriteLine($"{_grid.Lights.Count} lights on grid.");
 
-            _grid.Instructions = File.ReadAllLines("input.txt").ToList();
-            _grid.FollowInstructionsCommand.Execute(null);
-            Console.WriteLine($"{_grid.Lights.Count(l => l.Lit)} lights on.");
+            Part1(instructionList);
+            Part2(instructionList);
             Console.Write("Press any key.");
             Console.ReadKey();
         }
 
-        private static void CreateGrid(int cols, int rows)
+        private static void Part1(List<string> instructions)
         {
-            for (int x = 0; x < cols; x++)
-            {
-                for (int y = 0; y < rows; y++)
-                {
-                    _grid.Lights.Add(new ChristmasLight(x, y));
-                }
-            }
+            _grid.GenerateGridCommand.Execute(null);
+            Console.WriteLine($"{_grid.Lights.Count} lights on grid.");
+
+            _grid.Instructions = instructions;
+            _grid.FollowInstructionsCommand.Execute(null);
+            Console.WriteLine($"{_grid.Lights.Count(l => l.Lit)} lights on.");
+        }
+
+        private static void Part2(List<string> instructions)
+        {
+            _grid.GenerateGridCommand.Execute(null);
+            Console.WriteLine($"{_grid.Lights.Count} lights on grid.");
+
+            _grid.Instructions = instructions;
+            _grid.AdjustBrightnessInstructionsCommand.Execute(null);
+            Console.WriteLine($"{_grid.Lights.Sum(l => l.Brightness)} total brightness.");
         }
     }
 }
