@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day6_ProbablyAFirerHazard_C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day7Part1_SomeAssemblyRequired", "Day7Part1_SomeAssemblyRequired\Day7Part1_SomeAssemblyRequired.csproj", "{C8C19641-A2EA-460A-9794-33EE08292911}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day8_Matchsticks", "Day8_Matchsticks\Day8_Matchsticks.csproj", "{CDFC2AFA-8A3A-4CED-A7DC-CDC11583B9CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -195,6 +197,14 @@ Global
 		{C8C19641-A2EA-460A-9794-33EE08292911}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C8C19641-A2EA-460A-9794-33EE08292911}.Release|x64.ActiveCfg = Release|Any CPU
 		{C8C19641-A2EA-460A-9794-33EE08292911}.Release|x64.Build.0 = Release|Any CPU
+		{CDFC2AFA-8A3A-4CED-A7DC-CDC11583B9CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDFC2AFA-8A3A-4CED-A7DC-CDC11583B9CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDFC2AFA-8A3A-4CED-A7DC-CDC11583B9CA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CDFC2AFA-8A3A-4CED-A7DC-CDC11583B9CA}.Debug|x64.Build.0 = Debug|Any CPU
+		{CDFC2AFA-8A3A-4CED-A7DC-CDC11583B9CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDFC2AFA-8A3A-4CED-A7DC-CDC11583B9CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDFC2AFA-8A3A-4CED-A7DC-CDC11583B9CA}.Release|x64.ActiveCfg = Release|Any CPU
+		{CDFC2AFA-8A3A-4CED-A7DC-CDC11583B9CA}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
