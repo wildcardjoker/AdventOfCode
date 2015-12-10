@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day7Part1_SomeAssemblyRequi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day8_Matchsticks", "Day8_Matchsticks\Day8_Matchsticks.csproj", "{CDFC2AFA-8A3A-4CED-A7DC-CDC11583B9CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day9_AllInASingleNight", "Day9_AllInASingleNight\Day9_AllInASingleNight.csproj", "{C68DD4E3-8AC4-40C8-9B25-E3D6416C758B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -205,6 +207,14 @@ Global
 		{CDFC2AFA-8A3A-4CED-A7DC-CDC11583B9CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CDFC2AFA-8A3A-4CED-A7DC-CDC11583B9CA}.Release|x64.ActiveCfg = Release|Any CPU
 		{CDFC2AFA-8A3A-4CED-A7DC-CDC11583B9CA}.Release|x64.Build.0 = Release|Any CPU
+		{C68DD4E3-8AC4-40C8-9B25-E3D6416C758B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C68DD4E3-8AC4-40C8-9B25-E3D6416C758B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C68DD4E3-8AC4-40C8-9B25-E3D6416C758B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C68DD4E3-8AC4-40C8-9B25-E3D6416C758B}.Debug|x64.Build.0 = Debug|Any CPU
+		{C68DD4E3-8AC4-40C8-9B25-E3D6416C758B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C68DD4E3-8AC4-40C8-9B25-E3D6416C758B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C68DD4E3-8AC4-40C8-9B25-E3D6416C758B}.Release|x64.ActiveCfg = Release|Any CPU
+		{C68DD4E3-8AC4-40C8-9B25-E3D6416C758B}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
