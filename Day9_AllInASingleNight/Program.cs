@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day9_AllInASingleNight
 // Created: 2015-12-09
-// Modified: 2015-12-10 9:28 PM
+// Modified: 2015-12-10 9:30 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -67,7 +67,7 @@ namespace Day9_AllInASingleNight
                 //Console.WriteLine(totalDistance);
             }
             Console.WriteLine($"Shortest distance: {totalDistances.Min()}");
-
+            Console.WriteLine($"Longest distance: {totalDistances.Max()}");
             Console.Write("Press any key...");
             Console.ReadKey();
         }
