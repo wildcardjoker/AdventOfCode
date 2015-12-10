@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day10_ElevesLookElvesSay
 // Created: 2015-12-10
-// Modified: 2015-12-10 10:20 PM
+// Modified: 2015-12-10 10:31 PM
 // Last modified by: Jason Moore (Jason)
 #endregion
 
@@ -11,7 +11,9 @@
 
 #region Using Directives
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 #endregion
 
@@ -22,17 +24,25 @@ namespace Day10_ElevesLookElvesSay
         static void Main(string[] args)
         {
             const string input = "1113222113";
-            string output = input;
+            LookAndSay(input, 40);
+            LookAndSay(input, 50);
+            Console.WriteLine("Press any key.");
+            Console.ReadKey();
+        }
 
+        private static void LookAndSay(string input, int iterations)
+        {
+            List<char> output = input.ToList();
             Console.Write("Crunching numbers...");
-
-            for (int i = 0; i < 40; i++)
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            for (int i = 0; i < iterations; i++)
             {
-                string s = string.Empty;
-                char[] chars = output.ToCharArray();
+                //string s = string.Empty;
+                List<char> resultList = new List<char>();
+                List<char> chars = output;
                 int j = 0;
                 int k = 1;
-                while (k < chars.Length)
+                while (k < chars.Count)
                 {
                     int count = 1;
                     while (chars[j] == chars[k])
@@ -41,21 +51,21 @@ namespace Day10_ElevesLookElvesSay
                         j++;
                         k++;
                     }
-                    s += $"{count}{chars[j]}";
+                    resultList.AddRange($"{count}{chars[j]}");
                     j++;
                     k++;
                 }
-                if (k == chars.Length)
+                if (k == chars.Count)
                 {
-                    s += $"1{chars[j]}";
+                    resultList.AddRange($"1{chars[j]}");
                 }
-                output = s;
+                output = resultList;
             }
-            string answer = $"Length: {output} ({output.Length} characters).";
+            stopwatch.Stop();
+            string answer = $"Length after {iterations} iterations: {output.Count} characters.";
             Debug.WriteLine(answer);
             Console.WriteLine(answer);
-            Console.WriteLine("Press any key.");
-            Console.ReadKey();
+            Console.WriteLine(new TimeSpan(stopwatch.ElapsedTicks).ToString("g"));
         }
     }
 }
