@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day1_NoTimeForATaxicab
 // Created: 2016-12-01
-// Modified: 2016-12-01 11:03 PM
+// Modified: 2016-12-02 6:27 AM
 #endregion
 
 #region Using Directives
@@ -14,11 +14,18 @@ using Day1_NoTimeForATaxicab.Journey;
 
 namespace Day1_NoTimeForATaxiCab
 {
+    /// <summary>
+    ///     Launch the Day 1 application.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        ///     Launch the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         public static void Main(string[] args)
         {
-            List<string> inputs = new List<string> {"R2, L3", "R2, R2, R2", "R5, L5, R5, R3"};
+            var inputs = new List<string> {"R2, L3", "R2, R2, R2", "R5, L5, R5, R3"};
             foreach (string input in inputs)
             {
                 TravelonJourney(input);

@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day1_NoTimeForATaxicab
 // Created: 2016-12-01
-// Modified: 2016-12-01 11:00 PM
+// Modified: 2016-12-02 6:23 AM
 #endregion
 
 #region Using Directives
@@ -15,18 +15,25 @@ namespace Day1_NoTimeForATaxicab.Journey
 {
     public partial class Journey
     {
+        /// <summary>
+        ///     Traverse path provided by Moves.
+        /// </summary>
         public void Travel()
         {
             foreach (string move in Moves)
             {
-                var instruction = move.Trim();
-                var direction = instruction[0].ToString().ToLower();
-                var blocks = instruction.Substring(1);
+                string instruction = move.Trim();
+                string direction = instruction[0].ToString().ToLower();
+                string blocks = instruction.Substring(1);
                 CurrentDirection = GetDirection(direction);
                 Move(Convert.ToInt32(blocks));
             }
         }
 
+        /// <summary>
+        ///     Moves the specified blocks.
+        /// </summary>
+        /// <param name="blocks">The blocks.</param>
         private void Move(int blocks)
         {
             string startPoint = Coordinates;
@@ -45,7 +52,7 @@ namespace Day1_NoTimeForATaxicab.Journey
                     Y -= blocks;
                     break;
             }
-            Console.WriteLine($"Travelled from {startPoint} to {Coordinates}");
+            Console.WriteLine($"Traveled from {startPoint} to {Coordinates}");
         }
 
         private Direction GetDirection(string direction)
@@ -64,6 +71,6 @@ namespace Day1_NoTimeForATaxicab.Journey
             return (Direction) newDirection;
         }
 
-        private IEnumerable<string> GetMoves(string moves) => moves.Split(',');
+        private static IEnumerable<string> GetMoves(string moves) => moves.Split(',');
     }
 }
