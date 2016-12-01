@@ -3,55 +3,57 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day1_NotQuiteLisp", "Day1_NotQuiteLisp\Day1_NotQuiteLisp.csproj", "{8A6C90EF-140A-44E0-9CBD-9C178A8BC4A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day1_NotQuiteLisp", "Projects\2015\Day1_NotQuiteLisp\Day1_NotQuiteLisp.csproj", "{8A6C90EF-140A-44E0-9CBD-9C178A8BC4A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day2_IWasToldThereWouldBeNoMath", "Day2_IWasToldThereWouldBeNoMath\Day2_IWasToldThereWouldBeNoMath.csproj", "{F3BC7ED8-CF82-4167-8840-DCA0107BE8EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day2_IWasToldThereWouldBeNoMath", "Projects\2015\Day2_IWasToldThereWouldBeNoMath\Day2_IWasToldThereWouldBeNoMath.csproj", "{F3BC7ED8-CF82-4167-8840-DCA0107BE8EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day3_PerfectlySphericalHousesInAVacuum", "Day3_PerfectlySphericalHousesInAVacuum\Day3_PerfectlySphericalHousesInAVacuum.csproj", "{1F18DA3F-764B-4E21-9225-F73BCB5A363F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day3_PerfectlySphericalHousesInAVacuum", "Projects\2015\Day3_PerfectlySphericalHousesInAVacuum\Day3_PerfectlySphericalHousesInAVacuum.csproj", "{1F18DA3F-764B-4E21-9225-F73BCB5A363F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibHouse", "LibHouse\LibHouse.csproj", "{354C7C04-D298-47E0-8CF2-419CDD6EA96E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibHouse", "libs\LibHouse\LibHouse.csproj", "{354C7C04-D298-47E0-8CF2-419CDD6EA96E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libAdventCoin", "libAdventCoin\libAdventCoin.csproj", "{49AAA1EB-63A7-493C-8F5C-5FBC3F1D6322}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libAdventCoin", "libs\libAdventCoin\libAdventCoin.csproj", "{49AAA1EB-63A7-493C-8F5C-5FBC3F1D6322}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAdventCoin", "TestAdventCoin\TestAdventCoin.csproj", "{9144A343-F259-4470-B3ED-2749E58177BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAdventCoin", "Tests\2015\TestAdventCoin\TestAdventCoin.csproj", "{9144A343-F259-4470-B3ED-2749E58177BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day4_IdealStockingStuffer", "Day4_IdealStockingStuffer\Day4_IdealStockingStuffer.csproj", "{5F42B613-59CA-4C68-8400-AE3382565C6F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day4_IdealStockingStuffer", "Projects\2015\Day4_IdealStockingStuffer\Day4_IdealStockingStuffer.csproj", "{5F42B613-59CA-4C68-8400-AE3382565C6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libSanta", "libSanta\libSanta.csproj", "{D7FC2A37-A288-4501-9AFD-9E931E21131E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libSanta", "libs\libSanta\libSanta.csproj", "{D7FC2A37-A288-4501-9AFD-9E931E21131E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day5_DoesntHeHaveInternElvesForThis", "Day5_DoesntHeHaveInternElvesForThis\Day5_DoesntHeHaveInternElvesForThis.csproj", "{8FC04486-8EB3-42C1-9B32-09FBAC56DE30}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day5_DoesntHeHaveInternElvesForThis", "Projects\2015\Day5_DoesntHeHaveInternElvesForThis\Day5_DoesntHeHaveInternElvesForThis.csproj", "{8FC04486-8EB3-42C1-9B32-09FBAC56DE30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSanta", "TestSanta\TestSanta.csproj", "{24B02A66-0083-40FC-81F5-918CDE87506B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSanta", "Tests\2015\TestSanta\TestSanta.csproj", "{24B02A66-0083-40FC-81F5-918CDE87506B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libChristmasLight", "libChristmasLight\libChristmasLight.csproj", "{30BA6B70-522A-4EA0-86D0-E032E87DACF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libChristmasLight", "libs\libChristmasLight\libChristmasLight.csproj", "{30BA6B70-522A-4EA0-86D0-E032E87DACF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestChristmasLight", "TestChristmasLight\TestChristmasLight.csproj", "{E9582ADC-2025-4912-98E6-36BA7AE584FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestChristmasLight", "Tests\2015\TestChristmasLight\TestChristmasLight.csproj", "{E9582ADC-2025-4912-98E6-36BA7AE584FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libChristmasLightsGrid.ViewModel", "libChristmasLightsGrid.ViewModel\libChristmasLightsGrid.ViewModel.csproj", "{86FBE802-E4F9-4E83-911F-0190CD5F142B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libChristmasLightsGrid.ViewModel", "libs\libChristmasLightsGrid.ViewModel\libChristmasLightsGrid.ViewModel.csproj", "{86FBE802-E4F9-4E83-911F-0190CD5F142B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestChristmasLightViewModel", "TestChristmasLightViewModel\TestChristmasLightViewModel.csproj", "{FAE16BE0-5490-41A4-99F6-F4FFA223B492}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestChristmasLightViewModel", "Tests\2015\TestChristmasLightViewModel\TestChristmasLightViewModel.csproj", "{FAE16BE0-5490-41A4-99F6-F4FFA223B492}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{6E955E63-1459-4D0D-9D75-DC3E24436173}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libRelayCommand", "libRelayCommand\libRelayCommand.csproj", "{77C8ECD2-4130-4250-B87B-890872FD3A91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libRelayCommand", "libs\libRelayCommand\libRelayCommand.csproj", "{77C8ECD2-4130-4250-B87B-890872FD3A91}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Tests", "Unit Tests", "{1110CB56-460E-47BF-AA08-9201BBBAA067}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day6_ProbablyAFireHazard", "Day6_ProbablyAFireHazard\Day6_ProbablyAFireHazard.csproj", "{6A27758B-A133-49ED-ADDB-9C636CEE968B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day6_ProbablyAFireHazard", "Projects\2015\Day6_ProbablyAFireHazard\Day6_ProbablyAFireHazard.csproj", "{6A27758B-A133-49ED-ADDB-9C636CEE968B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day6_ProbablyAFirerHazard_Console", "Day6_ProbablyAFirerHazard_Console\Day6_ProbablyAFirerHazard_Console.csproj", "{5C25B2DC-4199-4561-8479-F753C4E1EE2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day6_ProbablyAFirerHazard_Console", "Projects\2015\Day6_ProbablyAFirerHazard_Console\Day6_ProbablyAFirerHazard_Console.csproj", "{5C25B2DC-4199-4561-8479-F753C4E1EE2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day7Part1_SomeAssemblyRequired", "Day7Part1_SomeAssemblyRequired\Day7Part1_SomeAssemblyRequired.csproj", "{C8C19641-A2EA-460A-9794-33EE08292911}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day7Part1_SomeAssemblyRequired", "Projects\2015\Day7Part1_SomeAssemblyRequired\Day7Part1_SomeAssemblyRequired.csproj", "{C8C19641-A2EA-460A-9794-33EE08292911}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day8_Matchsticks", "Day8_Matchsticks\Day8_Matchsticks.csproj", "{CDFC2AFA-8A3A-4CED-A7DC-CDC11583B9CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day8_Matchsticks", "Projects\2015\Day8_Matchsticks\Day8_Matchsticks.csproj", "{CDFC2AFA-8A3A-4CED-A7DC-CDC11583B9CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day9_AllInASingleNight", "Day9_AllInASingleNight\Day9_AllInASingleNight.csproj", "{C68DD4E3-8AC4-40C8-9B25-E3D6416C758B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day9_AllInASingleNight", "Projects\2015\Day9_AllInASingleNight\Day9_AllInASingleNight.csproj", "{C68DD4E3-8AC4-40C8-9B25-E3D6416C758B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day10_ElevesLookElvesSay", "Day10_ElevesLookElvesSay\Day10_ElevesLookElvesSay.csproj", "{A760AAFA-6D06-4109-BB06-CC3968ECCAB0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day10_ElevesLookElvesSay", "Projects\2015\Day10_ElevesLookElvesSay\Day10_ElevesLookElvesSay.csproj", "{A760AAFA-6D06-4109-BB06-CC3968ECCAB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day12_JSAbacusFramework.io", "Day12_JSAbacusFramework.io\Day12_JSAbacusFramework.io.csproj", "{F7AD1EDC-6AC6-4489-8148-DBE7D04EFC9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day12_JSAbacusFramework.io", "Projects\2015\Day12_JSAbacusFramework.io\Day12_JSAbacusFramework.io.csproj", "{F7AD1EDC-6AC6-4489-8148-DBE7D04EFC9B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2015", "2015", "{BD01B543-4098-4B5D-BE27-638F4D5EE37C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2016", "2016", "{5628FDEA-45D3-4CBD-A657-57DB90768E2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
