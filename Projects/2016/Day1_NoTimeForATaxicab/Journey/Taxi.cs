@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day1_NoTimeForATaxicab
 // Created: 2016-12-01
-// Modified: 2016-12-02 6:23 AM
+// Modified: 2016-12-02 6:28 AM
 #endregion
 
 #region Using Directives
@@ -57,8 +57,8 @@ namespace Day1_NoTimeForATaxicab.Journey
 
         private Direction GetDirection(string direction)
         {
-            int currentDirection = (int) CurrentDirection;
-            int newDirection = 0;
+            var currentDirection = (int) CurrentDirection;
+            int newDirection;
             if (direction.Equals("l"))
             {
                 currentDirection = currentDirection == 0 ? 360 : currentDirection;
