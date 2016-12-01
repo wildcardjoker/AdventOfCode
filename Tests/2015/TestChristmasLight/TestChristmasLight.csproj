@@ -72,7 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\libChristmasLight\libChristmasLight.csproj">
+    <ProjectReference Include="..\..\..\libs\libChristmasLight\libChristmasLight.csproj">
       <Project>{30ba6b70-522a-4ea0-86d0-e032e87dacf1}</Project>
       <Name>libChristmasLight</Name>
     </ProjectReference>

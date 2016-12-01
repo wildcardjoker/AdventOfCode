@@ -76,7 +76,7 @@
     <Content Include="Puzzle.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\libSanta\libSanta.csproj">
+    <ProjectReference Include="..\..\..\libs\libSanta\libSanta.csproj">
       <Project>{d7fc2a37-a288-4501-9afd-9e931e21131e}</Project>
       <Name>libSanta</Name>
     </ProjectReference>

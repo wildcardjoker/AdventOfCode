@@ -70,7 +70,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LibHouse\LibHouse.csproj">
+    <ProjectReference Include="..\..\..\libs\LibHouse\LibHouse.csproj">
       <Project>{354c7c04-d298-47e0-8cf2-419cdd6ea96e}</Project>
       <Name>LibHouse</Name>
     </ProjectReference>
