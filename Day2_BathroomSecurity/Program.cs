@@ -2,13 +2,14 @@
 
 // AdventOfCode: Day2_BathroomSecurity
 // Created: 2016-12-02
-// Modified: 2016-12-02 9:55 PM
+// Modified: 2016-12-02 10:00 PM
 #endregion
 
 #region Using Directives
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -22,10 +23,10 @@ namespace Day2_BathroomSecurity
     class Program
     {
         #region  Fields
+        private const int PadMax = 2;
         private static readonly List<Button> KeyPad = new List<Button>();
         private static int _padX = 1;
         private static int _padY = 1;
-        private const int PadMax = 2;
         private static readonly StringBuilder Sb = new StringBuilder();
         #endregion
 
@@ -36,7 +37,7 @@ namespace Day2_BathroomSecurity
         static void Main(string[] args)
         {
             GenerateKeyPad();
-            var instructions = new[] {"ULL", "RRDDD", "LURDL", "UUUUD"};
+            string[] instructions = File.ReadAllLines("input.txt");
             foreach (string instruction in instructions)
             {
                 FollowInstructions(instruction);
