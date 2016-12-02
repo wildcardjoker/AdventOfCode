@@ -1,6 +1,6 @@
 ﻿// AdventOfCode: Day1_NoTimeForATaxicab
 // Created: 2016-12-02
-// Modified: 2016-12-02 1:49 PM
+// Modified: 2016-12-02 2:56 PM
 
 #region Using Directives
 using System;
@@ -37,22 +37,44 @@ namespace Day1_NoTimeForATaxicab.Journey
             switch (CurrentDirection)
             {
                 case Direction.East:
-                    X += blocks;
+                    CurrentPoint.X += blocks;
                     break;
                 case Direction.West:
-                    X -= blocks;
+                    CurrentPoint.X -= blocks;
                     break;
                 case Direction.North:
-                    Y += blocks;
+                    CurrentPoint.Y += blocks;
                     break;
                 case Direction.South:
-                    Y -= blocks;
+                    CurrentPoint.Y -= blocks;
                     break;
             }
-            Sb.AppendLine(string.Join(",", CurrentDirection.ToString(), blocks.ToString(), X.ToString(), Y.ToString()));
+            Points.Add(CurrentPoint);
+            SetMinMaxPoints();
+            SetFirstRevisitedPoint();
+            Sb.AppendLine(string.Join(",", CurrentDirection.ToString(), blocks.ToString(), CurrentPoint.X.ToString(),
+                                      CurrentPoint.Y.ToString()));
             Console.WriteLine(
                 $"Travelled {blocks.ToString().PadLeft(6)} blocks {CurrentDirection.ToString().PadRight(10)} from {startPoint.PadRight(5)} to {Coordinates.PadRight(8)}");
         }
+
+        private void SetFirstRevisitedPoint()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SetMinMaxPoints()
+        {
+            SetMaxPointX();
+            SetMinPointX();
+            SetMaxPointY();
+            SetMinPointY();
+        }
+
+        private void SetMinPointX() => MinPointX = MinPointX <= CurrentPoint.X ? MinPointX : CurrentPoint.X;
+        private void SetMinPointY() => MinPointY = MinPointY <= CurrentPoint.Y ? MinPointY : CurrentPoint.Y;
+        private void SetMaxPointX() => MaxPointX = MaxPointX <= CurrentPoint.X ? MaxPointX : CurrentPoint.X;
+        private void SetMaxPointY() => MaxPointY = MaxPointY <= CurrentPoint.Y ? MaxPointY : CurrentPoint.Y;
 
         private Direction GetDirection(string direction)
         {

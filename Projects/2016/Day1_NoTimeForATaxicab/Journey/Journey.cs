@@ -1,11 +1,12 @@
 ﻿// AdventOfCode: Day1_NoTimeForATaxicab
 // Created: 2016-12-02
-// Modified: 2016-12-02 1:50 PM
+// Modified: 2016-12-02 2:51 PM
 
 #region Using Directives
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Day1_NoTimeForATaxiCab;
 
 #endregion
 
@@ -52,29 +53,22 @@ namespace Day1_NoTimeForATaxicab.Journey
         /// <param name="route">The route to be taken.</param>
         public Journey(string route)
         {
-            X = Y = 0;
+            CurrentPoint = new Point();
             Moves = GetMoves(route);
             CurrentDirection = Direction.North;
             Sb = new StringBuilder("Direction,Blocks,X,Y\n");
+            Points = new List<Point>();
         }
         #endregion
 
         #region Properties
-        /// <summary>
-        ///     How far away from our start point are we?
-        /// </summary>
-        /// <value>
-        ///     The blocks from start.
-        /// </value>
-        public int BlocksFromStart => Math.Abs(X) + Math.Abs(Y);
-
         /// <summary>
         ///     Gets the current coordinates.
         /// </summary>
         /// <value>
         ///     The coordinates.
         /// </value>
-        public string Coordinates => $"{X},{Y}";
+        public string Coordinates => $"{CurrentPoint.X},{CurrentPoint.Y}";
 
         /// <summary>
         ///     Gets or sets the current direction.
@@ -85,6 +79,22 @@ namespace Day1_NoTimeForATaxicab.Journey
         public Direction CurrentDirection { get; set; }
 
         /// <summary>
+        ///     Gets or sets the current point.
+        /// </summary>
+        /// <value>
+        ///     The current point.
+        /// </value>
+        public Point CurrentPoint { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the first revisited point.
+        /// </summary>
+        /// <value>
+        ///     The first revisited point.
+        /// </value>
+        public Point FirstRevisitedPoint { get; set; }
+
+        /// <summary>
         ///     Gets the log.
         /// </summary>
         /// <value>
@@ -92,24 +102,59 @@ namespace Day1_NoTimeForATaxicab.Journey
         /// </value>
         public string Log => Sb.ToString();
 
+        /// <summary>
+        ///     Gets or sets the maximum point.
+        /// </summary>
+        /// <value>
+        ///     The maximum point.
+        /// </value>
+        public int MaxPointX { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the maximum point y.
+        /// </summary>
+        /// <value>
+        ///     The maximum point y.
+        /// </value>
+        public int MaxPointY { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the minimum point.
+        /// </summary>
+        /// <value>
+        ///     The minimum point.
+        /// </value>
+        public int MinPointX { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the minimum point y.
+        /// </summary>
+        /// <value>
+        ///     The minimum point y.
+        /// </value>
+        public int MinPointY { get; set; }
+
         private IEnumerable<string> Moves { get; }
+
+        /// <summary>
+        ///     Gets the points.
+        /// </summary>
+        /// <value>
+        ///     The points.
+        /// </value>
+        public List<Point> Points { get; }
+
         private StringBuilder Sb { get; }
-
-        /// <summary>
-        ///     Gets or sets the x-axis value.
-        /// </summary>
-        /// <value>
-        ///     The x.
-        /// </value>
-        public int X { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the y-axis value.
-        /// </summary>
-        /// <value>
-        ///     The y.
-        /// </value>
-        public int Y { get; set; }
         #endregion
+
+        /// <summary>
+        ///     How far away from our start point are we?
+        /// </summary>
+        /// <value>
+        ///     The blocks from start.
+        /// </value>
+        public int BlocksFromStart() => BlocksFromStart(CurrentPoint);
+
+        public int BlocksFromStart(Point point) => Math.Abs(point.X) + Math.Abs(point.Y);
     }
 }
