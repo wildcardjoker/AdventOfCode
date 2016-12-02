@@ -1,9 +1,6 @@
-﻿#region Information
-
-// AdventOfCode: Day1_NoTimeForATaxicab
-// Created: 2016-12-01
-// Modified: 2016-12-02 6:28 AM
-#endregion
+﻿// AdventOfCode: Day1_NoTimeForATaxicab
+// Created: 2016-12-02
+// Modified: 2016-12-02 1:49 PM
 
 #region Using Directives
 using System;
@@ -52,7 +49,9 @@ namespace Day1_NoTimeForATaxicab.Journey
                     Y -= blocks;
                     break;
             }
-            Console.WriteLine($"Traveled from {startPoint} to {Coordinates}");
+            Sb.AppendLine(string.Join(",", CurrentDirection.ToString(), blocks.ToString(), X.ToString(), Y.ToString()));
+            Console.WriteLine(
+                $"Travelled {blocks.ToString().PadLeft(6)} blocks {CurrentDirection.ToString().PadRight(10)} from {startPoint.PadRight(5)} to {Coordinates.PadRight(8)}");
         }
 
         private Direction GetDirection(string direction)
@@ -68,7 +67,7 @@ namespace Day1_NoTimeForATaxicab.Journey
             {
                 newDirection = currentDirection + 90;
             }
-            return (Direction) newDirection;
+            return (Direction) (newDirection == 360 ? 0 : newDirection);
         }
 
         private static IEnumerable<string> GetMoves(string moves) => moves.Split(',');
