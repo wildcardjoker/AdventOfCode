@@ -1,13 +1,11 @@
-﻿#region Information
-
-// AdventOfCode: Day1_NoTimeForATaxicab
-// Created: 2016-12-01
-// Modified: 2016-12-02 6:28 AM
-#endregion
+﻿// AdventOfCode: Day1_NoTimeForATaxicab
+// Created: 2016-12-02
+// Modified: 2016-12-02 1:50 PM
 
 #region Using Directives
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 #endregion
 
@@ -57,6 +55,7 @@ namespace Day1_NoTimeForATaxicab.Journey
             X = Y = 0;
             Moves = GetMoves(route);
             CurrentDirection = Direction.North;
+            Sb = new StringBuilder("Direction,Blocks,X,Y\n");
         }
         #endregion
 
@@ -67,7 +66,7 @@ namespace Day1_NoTimeForATaxicab.Journey
         /// <value>
         ///     The blocks from start.
         /// </value>
-        public int BlocksFromStart => Math.Abs(X + Y);
+        public int BlocksFromStart => Math.Abs(X) + Math.Abs(Y);
 
         /// <summary>
         ///     Gets the current coordinates.
@@ -85,7 +84,16 @@ namespace Day1_NoTimeForATaxicab.Journey
         /// </value>
         public Direction CurrentDirection { get; set; }
 
+        /// <summary>
+        ///     Gets the log.
+        /// </summary>
+        /// <value>
+        ///     The log.
+        /// </value>
+        public string Log => Sb.ToString();
+
         private IEnumerable<string> Moves { get; }
+        private StringBuilder Sb { get; }
 
         /// <summary>
         ///     Gets or sets the x-axis value.

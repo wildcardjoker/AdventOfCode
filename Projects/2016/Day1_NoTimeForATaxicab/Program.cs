@@ -1,9 +1,6 @@
-﻿#region Information
-
-// AdventOfCode: Day1_NoTimeForATaxicab
-// Created: 2016-12-01
-// Modified: 2016-12-02 6:29 AM
-#endregion
+﻿// AdventOfCode: Day1_NoTimeForATaxicab
+// Created: 2016-12-02
+// Modified: 2016-12-02 1:45 PM
 
 #region Using Directives
 using System;
@@ -29,17 +26,18 @@ namespace Day1_NoTimeForATaxiCab
             var inputs = new List<string> {"R2, L3", "R2, R2, R2", "R5, L5, R5, R3", File.ReadAllText("input.txt")};
             foreach (string input in inputs)
             {
-                TravelonJourney(input);
+                TravelOnJourney(input);
             }
             Console.ReadKey();
         }
 
-        private static void TravelonJourney(string input)
+        private static void TravelOnJourney(string input)
         {
             var journey = new Journey(input);
             journey.Travel();
             Console.WriteLine(
                 $"Your taxi has arrived at {journey.Coordinates}, and is {journey.BlocksFromStart} blocks away from your departure point.");
+            File.WriteAllText("taxilog.csv", journey.Log);
         }
     }
 }
