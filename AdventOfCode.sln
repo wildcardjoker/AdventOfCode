@@ -66,6 +66,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day1_NoTimeForATaxicab", "Projects\2016\Day1_NoTimeForATaxicab\Day1_NoTimeForATaxicab.csproj", "{E7495C97-A3C3-476A-B280-9ACD6512EC45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day2_BathroomSecurity", "Day2_BathroomSecurity\Day2_BathroomSecurity.csproj", "{2B8058A7-78BB-4EA5-9078-C735774B554E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -258,6 +260,14 @@ Global
 		{E7495C97-A3C3-476A-B280-9ACD6512EC45}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E7495C97-A3C3-476A-B280-9ACD6512EC45}.Release|x64.ActiveCfg = Release|Any CPU
 		{E7495C97-A3C3-476A-B280-9ACD6512EC45}.Release|x64.Build.0 = Release|Any CPU
+		{2B8058A7-78BB-4EA5-9078-C735774B554E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B8058A7-78BB-4EA5-9078-C735774B554E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B8058A7-78BB-4EA5-9078-C735774B554E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2B8058A7-78BB-4EA5-9078-C735774B554E}.Debug|x64.Build.0 = Debug|Any CPU
+		{2B8058A7-78BB-4EA5-9078-C735774B554E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B8058A7-78BB-4EA5-9078-C735774B554E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B8058A7-78BB-4EA5-9078-C735774B554E}.Release|x64.ActiveCfg = Release|Any CPU
+		{2B8058A7-78BB-4EA5-9078-C735774B554E}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -288,5 +298,6 @@ Global
 		{619C5746-602D-443C-A007-4C147B2D16BC} = {6E955E63-1459-4D0D-9D75-DC3E24436173}
 		{7F3CCB14-A720-4847-8245-48C2BC11564E} = {6E955E63-1459-4D0D-9D75-DC3E24436173}
 		{E7495C97-A3C3-476A-B280-9ACD6512EC45} = {5628FDEA-45D3-4CBD-A657-57DB90768E2F}
+		{2B8058A7-78BB-4EA5-9078-C735774B554E} = {5628FDEA-45D3-4CBD-A657-57DB90768E2F}
 	EndGlobalSection
 EndGlobal
