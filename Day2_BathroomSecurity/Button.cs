@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day2_BathroomSecurity
 // Created: 2016-12-02
-// Modified: 2016-12-02 9:57 PM
+// Modified: 2016-12-02 11:32 PM
 #endregion
 
 #region Using Directives
@@ -24,14 +24,22 @@ namespace Day2_BathroomSecurity
         /// <param name="x">The x coordinate.</param>
         /// <param name="y">The y coordinate.</param>
         /// <param name="value">The keypad button value.</param>
-        public Button(int x, int y, int value) : this(new Point(x, y), value) {}
+        public Button(int x, int y, string value) : this(new Point(x, y), value) {}
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Button" /> class.
+        /// </summary>
+        /// <param name="x">The x coordinate.</param>
+        /// <param name="y">The y coordinate.</param>
+        /// <param name="value">The keypad button value.</param>
+        public Button(int x, int y, int value) : this(new Point(x, y), value.ToString()) {}
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Button" /> class.
         /// </summary>
         /// <param name="point">The button coordinates.</param>
         /// <param name="value">The keypad button value.</param>
-        public Button(Point point, int value)
+        public Button(Point point, string value)
         {
             ButtonCoordinates = point;
             Value = value;
@@ -53,7 +61,7 @@ namespace Day2_BathroomSecurity
         /// <value>
         ///     The value.
         /// </value>
-        public int Value { get; set; }
+        public string Value { get; set; }
         #endregion
     }
 }
