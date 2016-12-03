@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day2_BathroomSecurity
 // Created: 2016-12-02
-// Modified: 2016-12-02 11:30 PM
+// Modified: 2016-12-03 5:55 PM
 #endregion
 
 #region Using Directives
@@ -38,6 +38,7 @@ namespace Day2_BathroomSecurity
         /// <param name="args">The arguments.</param>
         static void Main(string[] args)
         {
+            // Set up instructions
             var testInstructions = new[] {"ULL", "RRDDD", "LURDL", "UUUUD"};
             string[] puzzleInstructions = File.ReadAllLines("input.txt");
             Console.WriteLine("Part 1");
@@ -67,6 +68,10 @@ namespace Day2_BathroomSecurity
             Console.ReadKey();
         }
 
+        /// <summary>
+        ///     Solves the keypad by following the instructions.
+        /// </summary>
+        /// <param name="instructions">The instructions.</param>
         private static void SolveKeypad(IEnumerable<string> instructions)
         {
             Sb.Clear();
@@ -78,6 +83,10 @@ namespace Day2_BathroomSecurity
             Console.WriteLine($"I think the combination is {Sb}");
         }
 
+        /// <summary>
+        ///     Follows an individual set of instructions and add the resulting Button value to the answer.
+        /// </summary>
+        /// <param name="instruction">The instruction.</param>
         private static void FollowInstructions(string instruction)
         {
             foreach (char c in instruction)
@@ -88,8 +97,15 @@ namespace Day2_BathroomSecurity
             Sb.Append(buttonToPress.Value);
         }
 
+        /// <summary>
+        ///     Move to the next button.
+        ///     If no button exists at these coordinates, remain in the previous position.
+        /// </summary>
+        /// <returns></returns>
         private static Button GetButtonByCoordinates()
         {
+            // Get the button matching the X and Y coordinates. 
+            // If no button exists at these coordinates, use the position of the last button we did reach.
             Button button =
                 _keyPad.FirstOrDefault(x => x.ButtonCoordinates.X == _padX && x.ButtonCoordinates.Y == _padY) ??
                 _lastButton;
@@ -124,6 +140,8 @@ namespace Day2_BathroomSecurity
                     break;
             }
 
+            // Is there a button at these coordinates?
+            // If yes, set this button as the origin point for the next move.
             if (_keyPad.Any(x => x.ButtonCoordinates.X == _padX && x.ButtonCoordinates.Y == _padY))
             {
                 _lastButton = GetButtonByCoordinates();

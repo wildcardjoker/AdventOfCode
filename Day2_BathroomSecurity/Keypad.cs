@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day2_BathroomSecurity
 // Created: 2016-12-02
-// Modified: 2016-12-02 11:30 PM
+// Modified: 2016-12-03 5:50 PM
 #endregion
 
 #region Using Directives
@@ -19,7 +19,7 @@ namespace Day2_BathroomSecurity
     public static partial class Program
     {
         /// <summary>
-        ///     Generates the key pad.
+        ///     Generates a standard 3x3 key pad with numbers 1-9.
         /// </summary>
         private static void GenerateKeyPadSquare()
         {
@@ -34,6 +34,9 @@ namespace Day2_BathroomSecurity
             }
         }
 
+        /// <summary>
+        ///     Generates the key pad.
+        /// </summary>
         private static void GenerateKeyPad()
         {
             _keyPad = new List<Button>();
@@ -50,6 +53,9 @@ namespace Day2_BathroomSecurity
             _padY = startButton.ButtonCoordinates.Y;
         }
 
+        /// <summary>
+        ///     Generates a non-standard 4x4 key pad with 1-9 and A-D in a diamond formation.
+        /// </summary>
         private static void GenerateKeyPadPoly()
         {
             _keyPad.Add(new Button(2, 4, 1));
