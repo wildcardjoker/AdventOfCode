@@ -66,7 +66,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day1_NoTimeForATaxicab", "Projects\2016\Day1_NoTimeForATaxicab\Day1_NoTimeForATaxicab.csproj", "{E7495C97-A3C3-476A-B280-9ACD6512EC45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day2_BathroomSecurity", "Day2_BathroomSecurity\Day2_BathroomSecurity.csproj", "{2B8058A7-78BB-4EA5-9078-C735774B554E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day2_BathroomSecurity", "Projects\2016\Day2_BathroomSecurity\Day2_BathroomSecurity.csproj", "{2B8058A7-78BB-4EA5-9078-C735774B554E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
