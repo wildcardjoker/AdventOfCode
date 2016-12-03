@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day1_NoTimeForATaxicab
 // Created: 2016-12-01
-// Modified: 2016-12-02 7:57 PM
+// Modified: 2016-12-03 7:10 AM
 #endregion
 
 #region Using Directives
@@ -26,6 +26,7 @@ namespace Day1_NoTimeForATaxiCab
         /// <param name="args">The arguments.</param>
         public static void Main(string[] args)
         {
+            // Include test inputs as well as puzzle input
             var inputs = new List<string>
                          {
                              "R8, R4, R4, R8",
@@ -35,6 +36,8 @@ namespace Day1_NoTimeForATaxiCab
                              "R5, L5, R5, R3",
                              File.ReadAllText("input.txt")
                          };
+
+            // Travel on each Journey
             foreach (string input in inputs)
             {
                 TravelOnJourney(input);
@@ -42,6 +45,10 @@ namespace Day1_NoTimeForATaxiCab
             Console.ReadKey();
         }
 
+        /// <summary>
+        ///     Follow input instructions and output result.
+        /// </summary>
+        /// <param name="input">The instructions.</param>
         private static void TravelOnJourney(string input)
         {
             var journey = new Journey(input);
