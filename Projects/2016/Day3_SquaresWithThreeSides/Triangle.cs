@@ -2,12 +2,13 @@
 
 // AdventOfCode: Day3_SquaresWithThreeSides
 // Created: 2016-12-03
-// Modified: 2016-12-03 9:41 PM
+// Modified: 2016-12-03 10:35 PM
 #endregion
 
 #region Using Directives
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 #endregion
@@ -28,10 +29,19 @@ namespace Day3_SquaresWithThreeSides
         {
             Sides =
                 lengths.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)
-                       .Select(x => Convert.ToInt32(x)).OrderBy(x => x)
-                       .ToList();
-            LongestSide = Sides.Last();
-            SumOfRemainingSides = Sides.OrderByDescending(x => x).Skip(1).Sum();
+                       .Select(x => Convert.ToInt32(x)).ToList();
+            CalculateSides();
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Triangle" /> class.
+        /// </summary>
+        /// <param name="lengths">Length of all three sides.</param>
+        public Triangle(int[] lengths)
+        {
+            Debug.WriteLine($"{lengths[0]} {lengths[1]} {lengths[2]}");
+            Sides = new List<int> {lengths[0], lengths[1], lengths[2]};
+            CalculateSides();
         }
         #endregion
 
@@ -50,7 +60,7 @@ namespace Day3_SquaresWithThreeSides
         /// <value>
         ///     The longest side.
         /// </value>
-        private int LongestSide { get; }
+        private int LongestSide { get; set; }
 
         /// <summary>
         ///     Gets or sets the sides of the triangle.
@@ -66,7 +76,16 @@ namespace Day3_SquaresWithThreeSides
         /// <value>
         ///     The sum of remaining sides.
         /// </value>
-        private int SumOfRemainingSides { get; }
+        private int SumOfRemainingSides { get; set; }
         #endregion
+
+        /// <summary>
+        ///     CGet longest Side and sum of Remaining sides - determines whether this is a valid Triangle.
+        /// </summary>
+        private void CalculateSides()
+        {
+            LongestSide = Sides.OrderBy(x => x).Last();
+            SumOfRemainingSides = Sides.OrderByDescending(x => x).Skip(1).Sum();
+        }
     }
 }
