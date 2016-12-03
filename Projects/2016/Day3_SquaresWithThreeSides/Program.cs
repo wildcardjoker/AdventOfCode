@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day3_SquaresWithThreeSides
 // Created: 2016-12-03
-// Modified: 2016-12-03 10:43 PM
+// Modified: 2016-12-03 10:44 PM
 #endregion
 
 #region Using Directives
@@ -80,9 +80,9 @@ namespace Day3_SquaresWithThreeSides
             var lengthCount = 0;
             for (var i = 0; i < 3; i++)
             {
-                for (var j = 0; j < _input.Count; j++)
+                foreach (string t in _input)
                 {
-                    string[] line = _input[j].Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                    string[] line = t.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     lengths[lengthCount] = Convert.ToInt32(line[i]);
                     lengthCount++;
                     if (lengthCount != 3) continue;
