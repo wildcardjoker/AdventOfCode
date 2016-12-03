@@ -2,12 +2,13 @@
 
 // AdventOfCode: Day3_SquaresWithThreeSides
 // Created: 2016-12-03
-// Modified: 2016-12-03 10:44 PM
+// Modified: 2016-12-03 10:46 PM
 #endregion
 
 #region Using Directives
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 #endregion
@@ -33,23 +34,25 @@ namespace Day3_SquaresWithThreeSides
             // Test cases
             //_input = new List<string> {"5 10 25", "5 20 25", "10 20 25"};
             // Part 2 Test Cases
-            _input = new List<string>
-                     {
-                         "101 301 501",
-                         "102 302 502",
-                         "103 303 503",
-                         "201 401 601",
-                         "202 402 602",
-                         "203 403 603"
-                     };
+            //_input = new List<string>
+            //         {
+            //             "101 301 501",
+            //             "102 302 502",
+            //             "103 303 503",
+            //             "201 401 601",
+            //             "202 402 602",
+            //             "203 403 603"
+            //         };
 
-            //_input = File.ReadAllLines("input.txt").ToList();
+            _input = File.ReadAllLines("input.txt").ToList();
 
             // Convert input to Triangle objects.
             ProcessInputPart1();
             Console.WriteLine(
                 $"Part 1 - Number of possible triangles found: {_triangles.Count(x => x.IsValidTriangle)}.");
             ProcessInputPart2();
+            Console.WriteLine(
+                $"Part 2 - Number of possible triangles found: {_triangles.Count(x => x.IsValidTriangle)}.");
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
