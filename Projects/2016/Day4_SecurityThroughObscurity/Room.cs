@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day4_SecurityThroughObscurity
 // Created: 2016-12-04
-// Modified: 2016-12-04 9:23 PM
+// Modified: 2016-12-04 9:46 PM
 #endregion
 
 #region Using Directives
@@ -20,6 +20,10 @@ namespace Day4_SecurityThroughObscurity
     /// </summary>
     public class Room
     {
+        #region  Fields
+        private static readonly char[] Alphabet = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
+        #endregion
+
         #region Constructors
         /// <summary>
         ///     Initializes a new instance of the <see cref="Room" /> class.
@@ -126,21 +130,16 @@ namespace Day4_SecurityThroughObscurity
         /// <returns></returns>
         private static char RotateLetter(char c, int sectorId)
         {
-            var alphabet = new List<char>();
-            for (int i = 'a'; i <= 'z'; i++)
-            {
-                alphabet.Add((char) i);
-            }
-            int index = alphabet.IndexOf(c);
+            int index = Array.IndexOf(Alphabet, c);
             for (var i = 0; i < sectorId; i++)
             {
                 index++;
-                if (index == alphabet.Count)
+                if (index == Alphabet.Length)
                 {
                     index = 0;
                 }
             }
-            return alphabet[index];
+            return Alphabet[index];
         }
 
         #region Overrides of Object
