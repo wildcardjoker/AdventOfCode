@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day4_SecurityThroughObscurity
 // Created: 2016-12-04
-// Modified: 2016-12-04 2:35 PM
+// Modified: 2016-12-04 9:23 PM
 #endregion
 
 #region Using Directives
@@ -50,6 +50,15 @@ namespace Day4_SecurityThroughObscurity
         ///     The check sum.
         /// </value>
         public string CheckSum { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the decrypted Room name.
+        /// </summary>
+        /// <value>
+        ///     The decrypted name of the Room.
+        /// </value>
+        public string DecryptedRoomName
+            => new string(RoomName.Select(c => c.Equals('-') ? ' ' : RotateLetter(c, SectorId)).ToArray());
 
         /// <summary>
         ///     Gets or sets a value indicating whether this Room is real.
@@ -109,6 +118,31 @@ namespace Day4_SecurityThroughObscurity
         public int SectorId { get; set; }
         #endregion
 
+        /// <summary>
+        ///     Rotate through the alphabet a number of times, rolling from z -> a.
+        /// </summary>
+        /// <param name="c">The c.</param>
+        /// <param name="sectorId">The sector identifier.</param>
+        /// <returns></returns>
+        private static char RotateLetter(char c, int sectorId)
+        {
+            var alphabet = new List<char>();
+            for (int i = 'a'; i <= 'z'; i++)
+            {
+                alphabet.Add((char) i);
+            }
+            int index = alphabet.IndexOf(c);
+            for (var i = 0; i < sectorId; i++)
+            {
+                index++;
+                if (index == alphabet.Count)
+                {
+                    index = 0;
+                }
+            }
+            return alphabet[index];
+        }
+
         #region Overrides of Object
         /// <summary>
         ///     Returns a <see cref="System.String" /> that represents this instance.
@@ -118,7 +152,7 @@ namespace Day4_SecurityThroughObscurity
         /// </returns>
         public override string ToString()
             =>
-            $"{RoomName} {SectorId}, checksum {CheckSum}, calculated checksum {MostCommonLetters}. {(IsReal ? "Real" : "Decoy")}";
+            $"{DecryptedRoomName} {SectorId}, checksum {CheckSum}, calculated checksum {MostCommonLetters}. {(IsReal ? "Real" : "Decoy")}";
         #endregion
     }
 }

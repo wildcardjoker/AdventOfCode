@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day4_SecurityThroughObscurity
 // Created: 2016-12-04
-// Modified: 2016-12-04 2:30 PM
+// Modified: 2016-12-04 9:32 PM
 #endregion
 
 #region Using Directives
@@ -34,23 +34,25 @@ namespace Day4_SecurityThroughObscurity
                                                           "aaaaa-bbb-z-y-x-123[abxyz]",
                                                           "a-b-c-d-e-f-g-h-987[abcde]",
                                                           "not-a-real-room-404[oarel]",
-                                                          "totally-real-room-200[decoy]"
+                                                          "totally-real-room-200[decoy]",
+                                                          "qzmt-zixmtkozy-ivhz-343[asdfg]"
                                                       };
 
         static void Main(string[] args)
         {
             // Test
             //_input = GetTestInput();
+
             _input = File.ReadAllLines("input.txt").ToList();
 
             foreach (string s in _input)
             {
-                var room = new Room(s);
-                Console.WriteLine(room);
-                Rooms.Add(room);
+                Rooms.Add(new Room(s));
             }
+
             int roomSectorIdTotal = Rooms.Where(x => x.IsReal).Sum(x => x.SectorId);
             Console.WriteLine($"Sum of all real Room Sector IDs: {roomSectorIdTotal}");
+            Console.WriteLine(Rooms.First(x => x.DecryptedRoomName.Contains("north")));
             Console.ReadKey();
         }
     }
