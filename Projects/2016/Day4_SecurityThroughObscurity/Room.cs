@@ -93,7 +93,7 @@ namespace Day4_SecurityThroughObscurity
             get
             {
                 char[] roomChars = RoomName.ToCharArray();
-                List<char> distinctChars = roomChars.Distinct().Except(new[] {'-'}).ToList();
+                List<char> distinctChars = roomChars.Distinct().Except(new[] { '-' }).ToList();
                 Dictionary<char, int> occurrences = distinctChars.ToDictionary(c => c,
                                                                                c => roomChars.Count(x => x.Equals(c)));
                 return new string(
