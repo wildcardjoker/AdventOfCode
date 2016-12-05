@@ -1,9 +1,10 @@
 ﻿// AdventOfCode: Day5_HowAboutANiceGameOfChess
 // Created: 2016-12-05
-// Modified: 2016-12-05 2:20 PM
+// Modified: 2016-12-05 4:13 PM
 
 #region Using Directives
 using System;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -17,11 +18,50 @@ namespace Day5_HowAboutANiceGameOfChess
     class Program
     {
         #region  Fields
+
+        // Test input
+        //private const string Input = "abc";
+        //private static int _index = 3231929;
+        // Puzzle input
         private const string Input = "cxdnnyjw";
         private static int _index;
         #endregion
 
         static void Main(string[] args)
+        {
+            RunPart1();
+            Console.WriteLine();
+            RunPart2();
+            Console.ReadKey();
+        }
+
+        private static void RunPart2()
+        {
+            _index = 0;
+            char[] password = "--------".ToCharArray();
+            while (password.Any(x => x.Equals('-')))
+            {
+                string hash = GetPasswordHash();
+                int index = GetHashIndex(hash[5]);
+
+                while (index < 0 || index >= password.Length)
+                {
+                    hash = GetPasswordHash();
+                    index = GetHashIndex(hash[5]);
+
+                    //Debug.WriteLine($"{hash} - {index}");
+                }
+                if (password[index].Equals('-'))
+                {
+                    password[(int) char.GetNumericValue(hash[5])] = hash[6];
+                }
+            }
+            Console.WriteLine($"Part 2: {new string(password.ToArray())}");
+        }
+
+        private static int GetHashIndex(char c) => (int) char.GetNumericValue(c);
+
+        private static void RunPart1()
         {
             var password = new StringBuilder();
 
@@ -29,8 +69,7 @@ namespace Day5_HowAboutANiceGameOfChess
             {
                 password.Append(GetPasswordChar());
             }
-            Console.WriteLine(password.ToString());
-            Console.ReadKey();
+            Console.WriteLine($"Part 1: {password}");
         }
 
         /// <summary>
@@ -40,13 +79,18 @@ namespace Day5_HowAboutANiceGameOfChess
         /// <remarks>Calculate the MD5 hash until it begins with 00000</remarks>
         private static char GetPasswordChar()
         {
+            return GetPasswordHash()[5];
+        }
+
+        private static string GetPasswordHash()
+        {
             string hash = string.Empty;
             while (!hash.StartsWith("00000"))
             {
                 hash = CalculateMd5Hash($"{Input}{_index}");
                 _index++;
             }
-            return hash[5];
+            return hash;
         }
 
         /// <summary>
