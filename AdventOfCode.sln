@@ -74,6 +74,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day4_SecurityThroughObscuri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day5_HowAboutANiceGameOfChess", "Projects\2016\Day5_HowAboutANiceGameOfChess\Day5_HowAboutANiceGameOfChess.csproj", "{8142A53D-2222-4201-AF39-BEFBA19DFE02}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day6_SignalsAndNoise", "Projects\2016\Day6_SignalsAndNoise\Day6_SignalsAndNoise.csproj", "{35F4CAA7-24C6-4726-820C-D4B43CBDDDFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -298,6 +300,14 @@ Global
 		{8142A53D-2222-4201-AF39-BEFBA19DFE02}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8142A53D-2222-4201-AF39-BEFBA19DFE02}.Release|x64.ActiveCfg = Release|Any CPU
 		{8142A53D-2222-4201-AF39-BEFBA19DFE02}.Release|x64.Build.0 = Release|Any CPU
+		{35F4CAA7-24C6-4726-820C-D4B43CBDDDFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35F4CAA7-24C6-4726-820C-D4B43CBDDDFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35F4CAA7-24C6-4726-820C-D4B43CBDDDFE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{35F4CAA7-24C6-4726-820C-D4B43CBDDDFE}.Debug|x64.Build.0 = Debug|Any CPU
+		{35F4CAA7-24C6-4726-820C-D4B43CBDDDFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35F4CAA7-24C6-4726-820C-D4B43CBDDDFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35F4CAA7-24C6-4726-820C-D4B43CBDDDFE}.Release|x64.ActiveCfg = Release|Any CPU
+		{35F4CAA7-24C6-4726-820C-D4B43CBDDDFE}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -332,5 +342,6 @@ Global
 		{D420FCC3-7324-480A-A00D-892C1F0257CF} = {5628FDEA-45D3-4CBD-A657-57DB90768E2F}
 		{9750B596-9C96-4A74-BFDA-81376B20EB1C} = {5628FDEA-45D3-4CBD-A657-57DB90768E2F}
 		{8142A53D-2222-4201-AF39-BEFBA19DFE02} = {5628FDEA-45D3-4CBD-A657-57DB90768E2F}
+		{35F4CAA7-24C6-4726-820C-D4B43CBDDDFE} = {5628FDEA-45D3-4CBD-A657-57DB90768E2F}
 	EndGlobalSection
 EndGlobal
