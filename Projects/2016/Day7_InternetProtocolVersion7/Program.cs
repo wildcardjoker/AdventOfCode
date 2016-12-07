@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day7_InternetProtocolVersion7
 // Created: 2016-12-07
-// Modified: 2016-12-07 10:54 PM
+// Modified: 2016-12-08 6:17 AM
 #endregion
 
 //#define TEST
@@ -48,7 +48,7 @@ namespace Day7_InternetProtocolVersion7
 
             // Get Part 1 answer - how many inputs with "abba" pattern *outside* [], but *not inside* []?
             Console.WriteLine
-                ($"\n\nFound {addresses.Count(x => x.SupportsTla())} IPv7 addresses (part 1).");
+                ($"\n\nFound {addresses.Count(x => x.SupportsTls())} IPv7 addresses (part 1).");
             Console.ReadKey();
         }
     }

@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day7_InternetProtocolVersion7
 // Created: 2016-12-07
-// Modified: 2016-12-07 10:50 PM
+// Modified: 2016-12-08 6:17 AM
 #endregion
 
 #region Using Directives
@@ -52,7 +52,7 @@ namespace Day7_InternetProtocolVersion7
         ///     Indicates whether the input string represents an IPv7 address that supports TLA according to Part 1.
         /// </summary>
         /// <returns></returns>
-        public bool SupportsTla()
+        public bool SupportsTls()
         {
             // Can be condensed into an expression body, but this is easier to read.
             bool containsAbbaSegmentsInHyperNetSegment = HyperNetSegments.Any(ContainsAbba);
@@ -61,11 +61,11 @@ namespace Day7_InternetProtocolVersion7
         }
 
         /// <summary>
-        /// Determines whether the specified input contains a string in the pattern "abba".
+        ///     Determines whether the specified input contains a string in the pattern "abba".
         /// </summary>
         /// <param name="input">The input.</param>
         /// <returns>
-        ///   <c>true</c> if the specified input contains "abba" pattern; otherwise, <c>false</c>.
+        ///     <c>true</c> if the specified input contains "abba" pattern; otherwise, <c>false</c>.
         /// </returns>
         public bool ContainsAbba(string input)
         {
