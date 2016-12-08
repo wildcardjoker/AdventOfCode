@@ -1,19 +1,17 @@
-﻿// AdventOfCode: Day7_InternetProtocolVersion7
-// Created: 2016-12-07
-// Modified: 2016-12-07 2:32 PM
-
-#define TEST
+﻿#region Information
 
 // AdventOfCode: Day7_InternetProtocolVersion7
 // Created: 2016-12-07
-// Modified: 2016-12-07 2:23 PM
+// Modified: 2016-12-08 6:16 PM
+#endregion
+
+//#define TEST
 
 #region Using Directives
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 #endregion
 
@@ -26,52 +24,38 @@ namespace Day7_InternetProtocolVersion7
 #if TEST
             var addresses = new List<Ipv7Address>
                             {
+                                // example input - part 1
                                 new Ipv7Address("abba[mnop]qrst"),
                                 new Ipv7Address("abcd[bddb]xyyx"),
                                 new Ipv7Address("aaaa[qwer]tyui"),
-                                new Ipv7Address("ioxxoj[asdfgh]zxcvbn")
+                                new Ipv7Address("ioxxoj[asdfgh]zxcvbn"),
+
+                                // example input - part 2
+                                new Ipv7Address("aba[bab]xyz"),
+                                new Ipv7Address("xyx[xyx]xyx"),
+                                new Ipv7Address("aaa[kek]eke"),
+                                new Ipv7Address("zazbz[bzb]cdb")
                             };
 
+#else
+            List<Ipv7Address> addresses =
+                File.ReadAllLines("input.txt").Select(x => new Ipv7Address(x)).ToList();
 #endif
-            foreach (Ipv7Address address in addresses)
-            {
-                Console.WriteLine($"Supports TLA: {address.SupportsTLA()}");
-            }
+
+            // Get input with "abba" pattern.
+            Console.WriteLine($"Found {addresses.Count(x => x.SegmentsWithAbba > 0)} segments.");
+
+            // Get input with "abba" pattern inside [].
+            Console.WriteLine($"Found {addresses.Count(x => x.HyperNetSegmentsWithAbba > 0)} hypernet segments");
+
+            // Get input with "abba" pattern both inside and outside [].
+            Console.WriteLine(
+                $"Found {addresses.Count(x => x.HyperNetSegmentsWithAbba > 0 && x.SegmentsWithAbba > 0)} addresses with both TLS and Hypernet segments.");
+
+            // Get Part 1 answer - how many inputs with "abba" pattern *outside* [], but *not inside* []?
+            Console.WriteLine
+                ($"\n\nFound {addresses.Count(x => x.SupportsTls())} IPv7 addresses (part 1).");
             Console.ReadKey();
-        }
-    }
-
-    class Ipv7Address
-    {
-        #region Constructors
-        public Ipv7Address(string input)
-        {
-            // There has to be a regular expression for this, but let's do it the easy way.
-            Segments = input.Replace("[", "-").Replace("]", "-").Split('-').ToList();
-        }
-        #endregion
-
-        #region Properties
-        public List<string> Segments { get; set; }
-        #endregion
-
-        public bool SupportsTLA()
-        {
-            List<string> pairs = GetPairs(Segments[0]).ToList();
-            pairs.AddRange(GetPairs(Segments[2]));
-
-            foreach (string pair in pairs)
-            {
-                Debug.WriteLine(pair);
-            }
-            return false;
-        }
-
-        private IEnumerable<string> GetPairs(string input)
-        {
-            var pairRegex = new Regex(@"\w{2}");
-            return
-                (from Match match in pairRegex.Matches(input) select match.Value).Where(x => x[0] != x[1]).ToList();
         }
     }
 }
