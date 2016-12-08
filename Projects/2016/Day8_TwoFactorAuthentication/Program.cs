@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day8_TwoFactorAuthentication
 // Created: 2016-12-08
-// Modified: 2016-12-09 7:27 AM
+// Modified: 2016-12-09 7:30 AM
 #endregion
 
 #region Using Directives
@@ -39,12 +39,26 @@ namespace Day8_TwoFactorAuthentication
 
         static void Main(string[] args)
         {
-            foreach (string s in TestInput)
+            foreach (string s in Input)
             {
                 ProcessInput(s);
                 DisplayLcd();
                 Console.WriteLine();
             }
+
+            // Get "on" pixels
+            var litPixels = 0;
+            for (var i = 0; i < LcdHeight; i++)
+            {
+                for (var j = 0; j < LcdWidth; j++)
+                {
+                    if (Lcd[i, j])
+                    {
+                        litPixels++;
+                    }
+                }
+            }
+            Console.WriteLine($"\n\n{litPixels} pixels are lit.");
             Console.ReadKey();
         }
 
