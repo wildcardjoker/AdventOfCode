@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day7_InternetProtocolVersion7
 // Created: 2016-12-07
-// Modified: 2016-12-08 6:17 AM
+// Modified: 2016-12-08 9:15 PM
 #endregion
 
 #region Using Directives
@@ -36,10 +36,44 @@ namespace Day7_InternetProtocolVersion7
                     HyperNetSegments.Add(segments[i]);
                 }
             }
+
+            // Create a list of ABA patterns found in any segment.
+            AbaList = GetAbaList();
+
+            // Create a list of BAB patterns based on the ABA patterns.
+            BabList = new List<string>();
+            if (!AbaList.Any()) return;
+            foreach (string s in AbaList)
+            {
+                // Flip first and second characters to determine the BAB pattern.
+                BabList.Add($"{s[1]}{s[0]}{s[1]}");
+            }
         }
         #endregion
 
         #region Properties
+        /// <summary>
+        ///     Gets or sets the list of ABA patterns.
+        /// </summary>
+        /// <value>
+        ///     The ABA pattern list.
+        /// </value>
+        private List<string> AbaList { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the list of BAB patterns.
+        /// </summary>
+        /// <value>
+        ///     The BAB pattern list.
+        /// </value>
+        private List<string> BabList { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the hyper net segments.
+        /// </summary>
+        /// <value>
+        ///     The hyper net segments.
+        /// </value>
         public List<string> HyperNetSegments { get; set; }
 
         public int HyperNetSegmentsWithAbba => HyperNetSegments.Count(ContainsAbba);
@@ -58,6 +92,46 @@ namespace Day7_InternetProtocolVersion7
             bool containsAbbaSegmentsInHyperNetSegment = HyperNetSegments.Any(ContainsAbba);
             bool containsAbbaSegments = Segments.Any(ContainsAbba);
             return containsAbbaSegments && !containsAbbaSegmentsInHyperNetSegment;
+        }
+
+        /// <summary>
+        ///     Supports SSL (contains ABA and BAB patterns).
+        /// </summary>
+        /// <returns></returns>
+        public bool SupportsSsl() => BabList.Any(s => HyperNetSegments.Any(x => x.Contains(s)));
+
+        /// <summary>
+        ///     Gets the aba list.
+        /// </summary>
+        /// <returns></returns>
+        private List<string> GetAbaList()
+        {
+            var abaList = new List<string>();
+            foreach (string segment in Segments)
+            {
+                abaList.AddRange(GetAba(segment));
+            }
+            return abaList;
+        }
+
+        /// <summary>
+        ///     Gets ABA patterns in segment.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
+        public List<string> GetAba(string input)
+        {
+            char[] segments = input.ToCharArray();
+            var segmentAbaList = new List<string>();
+            for (var i = 0; i < segments.Length - 2; i++)
+            {
+                if (segments[i].Equals(segments[i + 2]) && !segments[i].Equals(segments[i + 1]))
+                {
+                    //We have an aba/bab - add it to the list.
+                    segmentAbaList.Add($"{segments[i]}{segments[i + 1]}{segments[i + 2]}");
+                }
+            }
+            return segmentAbaList;
         }
 
         /// <summary>
