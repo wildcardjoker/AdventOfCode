@@ -1,14 +1,17 @@
-﻿// AdventOfCode: Day8_TwoFactorAuthentication
-// Created: 2016-12-09
-// Modified: 2016-12-09 11:17 AM
+﻿#region Information
+
+// AdventOfCode: Day8_TwoFactorAuthentication
+// Created: 2016-12-08
+// Modified: 2016-12-09 8:28 PM
+#endregion
 
 #region Using Directives
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 #endregion
 
@@ -29,9 +32,16 @@ namespace Day8_TwoFactorAuthentication
         private static readonly List<string> TestInput = new List<string>
                                                          {
                                                              "rect 1x1",
-                                                             "rotate row y=0 by 49",
-                                                             "rotate row y=0 by 1"
+                                                             "rotate row y=0 by 1",
+                                                             "rotate column x=1 by 1",
+                                                             "rotate row y=1 by 1",
+                                                             "rotate column x=2 by 1",
+                                                             "rotate row y=2 by 1",
+                                                             "rotate column x=3 by 4",
+                                                             "rotate column x=3 by 1",
+                                                             "rotate column x=3 by 1"
 
+                                                             // Puzzle example.
                                                              //"rect 3x2",
                                                              //"rotate column x=1 by 1",
                                                              //"rotate row y=0 by 4",
@@ -49,7 +59,12 @@ namespace Day8_TwoFactorAuthentication
             Console.BackgroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.Black;
             var instructionCount = 1;
-            foreach (string s in TestInput)
+
+            // Wait for user input.
+            Console.Clear();
+            Console.Write("Press any key to begin...");
+            Console.ReadKey();
+            foreach (string s in Input)
             {
                 Console.Clear();
                 ProcessInput(s);
@@ -57,10 +72,11 @@ namespace Day8_TwoFactorAuthentication
                 Console.WriteLine(
                     $"{($"{GetNumberOfLitPixels()} lit pixels".PadRight(PixelPad))}{s.PadRight(InstructionPad)}{instructionCount.ToString().PadLeft(5)}");
                 instructionCount++;
-                Console.ReadKey();
+
+                Thread.Sleep(100);
             }
 
-            Console.WriteLine($"\n\n{GetNumberOfLitPixels()} pixels are lit.");
+            Console.Write($"Number of pixels lit: {GetNumberOfLitPixels()}");
             Console.ReadKey();
         }
 
@@ -120,18 +136,24 @@ namespace Day8_TwoFactorAuthentication
                 int columnToRotate = Convert.ToInt32(matches[0].Value);
                 int rowMatch = Convert.ToInt32(matches[1].Value);
 
+                var list = new List<bool>();
+                for (var i = 0; i < LcdHeight; i++)
+                {
+                    list.Add(Lcd[i, columnToRotate]);
+                }
+                list.Reverse();
                 for (var i = 0; i < rowMatch; i++)
                 {
-                    // Shift pixels down
-                    for (int row = LcdHeight - 1; row >= 0; row--)
-                    {
-                        // Get value of first  pixel.
-                        bool firstPixel = Lcd[0, columnToRotate];
-                        bool lastPixel = Lcd[LcdHeight - 1, columnToRotate];
-                        int previousRow = row - 1;
-                        bool previousPixel = previousRow < 0 ? lastPixel : Lcd[previousRow, columnToRotate];
-                        Lcd[row, columnToRotate] = previousPixel;
-                    }
+                    bool value = list.First();
+                    list.RemoveAt(0);
+                    list.Add(value);
+                }
+                list.Reverse();
+                var count = 0;
+                foreach (bool b in list)
+                {
+                    Lcd[count, columnToRotate] = b;
+                    count++;
                 }
             }
             else
@@ -139,26 +161,27 @@ namespace Day8_TwoFactorAuthentication
                 int rowToRotate = Convert.ToInt32(matches[0].Value);
                 int columnMatch = Convert.ToInt32(matches[1].Value);
 
+                var list = new List<bool>();
+                for (var i = 0; i < LcdWidth; i++)
+                {
+                    list.Add(Lcd[rowToRotate, i]);
+                }
+
+                list.Reverse();
                 for (var i = 0; i < columnMatch; i++)
                 {
-                    // Shift pixels right
-                    for (int col = LcdWidth - 1; col >= 0; col--)
-                    {
-                        // Get value of first  pixel.
-                        bool lastPixel = Lcd[rowToRotate, LcdWidth - 1];
-                        int previousCol = col - 1;
-                        bool previousPixelIsLit = previousCol < 0 ? lastPixel : Lcd[rowToRotate, previousCol];
-                        Lcd[rowToRotate, col] = previousPixelIsLit;
-                        Debug.WriteLine($"LCD[{rowToRotate},{col}]: {Lcd[rowToRotate, col]}");
-
-                        // Turn off previous pixel.
-                        if (col > 0)
-                        {
-                            Lcd[rowToRotate, col - 1] = false;
-                        }
-                    }
+                    bool value = list.First();
+                    list.RemoveAt(0);
+                    list.Add(value);
                 }
-                Debug.WriteLine(Lcd[0, 0]);
+
+                list.Reverse();
+                var count = 0;
+                foreach (bool b in list)
+                {
+                    Lcd[rowToRotate, count] = b;
+                    count++;
+                }
             }
         }
 
