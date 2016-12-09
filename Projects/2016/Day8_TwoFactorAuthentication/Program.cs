@@ -1,13 +1,11 @@
-﻿#region Information
-
-// AdventOfCode: Day8_TwoFactorAuthentication
-// Created: 2016-12-08
-// Modified: 2016-12-09 7:30 AM
-#endregion
+﻿// AdventOfCode: Day8_TwoFactorAuthentication
+// Created: 2016-12-09
+// Modified: 2016-12-09 11:17 AM
 
 #region Using Directives
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -21,17 +19,23 @@ namespace Day8_TwoFactorAuthentication
         #region  Fields
         private const int LcdWidth = 50;
         private const int LcdHeight = 6;
+        private const int InstructionCountPad = 5;
+        private const int PixelPad = 20;
+        private const int InstructionPad = LcdWidth - PixelPad - InstructionCountPad;
         private static readonly Regex DigitRegex = new Regex(@"\d+");
 
-        //private static List<Pixel> _lcd;
         public static bool[,] Lcd = new bool[LcdHeight, LcdWidth];
 
         private static readonly List<string> TestInput = new List<string>
                                                          {
-                                                             "rect 3x2",
-                                                             "rotate column x=1 by 1",
-                                                             "rotate row y=0 by 4",
-                                                             "rotate column x=1 by 1"
+                                                             "rect 1x1",
+                                                             "rotate row y=0 by 49",
+                                                             "rotate row y=0 by 1"
+
+                                                             //"rect 3x2",
+                                                             //"rotate column x=1 by 1",
+                                                             //"rotate row y=0 by 4",
+                                                             //"rotate column x=1 by 1"
                                                          };
 
         private static readonly List<string> Input = File.ReadAllLines("input.txt").ToList();
@@ -39,13 +43,29 @@ namespace Day8_TwoFactorAuthentication
 
         static void Main(string[] args)
         {
-            foreach (string s in Input)
+            Console.Title = "Advent of Code 2016 - Day 8";
+            Console.SetWindowSize(LcdWidth + 1, LcdHeight + 2);
+            Console.SetBufferSize(LcdWidth + 1, LcdHeight + 2);
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.Black;
+            var instructionCount = 1;
+            foreach (string s in TestInput)
             {
+                Console.Clear();
                 ProcessInput(s);
                 DisplayLcd();
-                Console.WriteLine();
+                Console.WriteLine(
+                    $"{($"{GetNumberOfLitPixels()} lit pixels".PadRight(PixelPad))}{s.PadRight(InstructionPad)}{instructionCount.ToString().PadLeft(5)}");
+                instructionCount++;
+                Console.ReadKey();
             }
 
+            Console.WriteLine($"\n\n{GetNumberOfLitPixels()} pixels are lit.");
+            Console.ReadKey();
+        }
+
+        private static int GetNumberOfLitPixels()
+        {
             // Get "on" pixels
             var litPixels = 0;
             for (var i = 0; i < LcdHeight; i++)
@@ -58,8 +78,7 @@ namespace Day8_TwoFactorAuthentication
                     }
                 }
             }
-            Console.WriteLine($"\n\n{litPixels} pixels are lit.");
-            Console.ReadKey();
+            return litPixels;
         }
 
         private static void DisplayLcd()
@@ -126,13 +145,20 @@ namespace Day8_TwoFactorAuthentication
                     for (int col = LcdWidth - 1; col >= 0; col--)
                     {
                         // Get value of first  pixel.
-                        bool firstPixel = Lcd[rowToRotate, 0];
                         bool lastPixel = Lcd[rowToRotate, LcdWidth - 1];
                         int previousCol = col - 1;
-                        bool previousPixel = previousCol < 0 ? lastPixel : Lcd[rowToRotate, previousCol];
-                        Lcd[rowToRotate, col] = previousPixel;
+                        bool previousPixelIsLit = previousCol < 0 ? lastPixel : Lcd[rowToRotate, previousCol];
+                        Lcd[rowToRotate, col] = previousPixelIsLit;
+                        Debug.WriteLine($"LCD[{rowToRotate},{col}]: {Lcd[rowToRotate, col]}");
+
+                        // Turn off previous pixel.
+                        if (col > 0)
+                        {
+                            Lcd[rowToRotate, col - 1] = false;
+                        }
                     }
                 }
+                Debug.WriteLine(Lcd[0, 0]);
             }
         }
 
