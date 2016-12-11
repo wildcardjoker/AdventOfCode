@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day10_BalanceBots
 // Created: 2016-12-10
-// Modified: 2016-12-11 9:37 AM
+// Modified: 2016-12-11 9:46 AM
 #endregion
 
 //#define TEST
@@ -49,6 +49,14 @@ namespace Day10_BalanceBots
                 Debug.WriteLine(bot.Id);
             }
             Console.WriteLine($"Bot {_botId} held both {LowChipToFind} and {HighChipToFind}");
+            Console.WriteLine("Output bins:");
+            Console.WriteLine($"{"Bin:".PadRight(15)}{"Value".PadRight(5)}");
+            foreach (KeyValuePair<int, int> pair in OutputsDictionary.OrderBy(x => x.Key))
+            {
+                Console.WriteLine($"{pair.Key.ToString().PadRight(15)}{pair.Value.ToString().PadLeft(5)}");
+            }
+            Console.WriteLine(
+                $"\n\nOutput 0 * Output 1 * output 2 = {OutputsDictionary[0] * OutputsDictionary[1] * OutputsDictionary[2]}");
             Console.ReadKey();
         }
 
