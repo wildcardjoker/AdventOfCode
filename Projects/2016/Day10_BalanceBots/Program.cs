@@ -2,17 +2,10 @@
 
 // AdventOfCode: Day10_BalanceBots
 // Created: 2016-12-10
-// Modified: 2016-12-10 10:50 PM
+// Modified: 2016-12-11 9:37 AM
 #endregion
 
-#define TEST
-
-#region Information
-
-// AdventOfCode: Day10_BalanceBots
-// Created: 2016-12-10
-// Modified: 2016-12-10 10:07 PM
-#endregion
+//#define TEST
 
 #region Using Directives
 using System;
@@ -31,7 +24,11 @@ namespace Day10_BalanceBots
         #region  Fields
         private static readonly Regex RuleRegex = new Regex(@"\S+\s+\d+");
         private static readonly Regex BotRegex = new Regex(@"(\d+)");
-        private static List<string> BotSetupList;
+        private static List<string> _botSetupList;
+        private const int LowChipToFind = 17;
+        private const int HighChipToFind = 61;
+
+        private static int _botId;
 #if TEST
         private static readonly string[] Input = File.ReadAllLines("testinput.txt");
 #else
@@ -51,6 +48,7 @@ namespace Day10_BalanceBots
             {
                 Debug.WriteLine(bot.Id);
             }
+            Console.WriteLine($"Bot {_botId} held both {LowChipToFind} and {HighChipToFind}");
             Console.ReadKey();
         }
 
@@ -83,6 +81,21 @@ namespace Day10_BalanceBots
 
             var moveResult = false;
             Bot sourceBot = GetBot(botId);
+
+            // Check that source bot has two chips.
+            if (sourceBot.Values.Count != 2)
+            {
+                return false;
+            }
+
+            // Check if bot is holding the two chips we need.
+            if (sourceBot.Values.Min() == LowChipToFind && sourceBot.Values.Max() == HighChipToFind)
+            {
+                _botId = sourceBot.Id;
+                Console.WriteLine($"****** Bot {_botId} has both chips.");
+            }
+            Console.WriteLine($"Bot {botId} passes low to {lowRule}, and high to {highRule}");
+
             switch (lowDestination)
             {
                 case "bot":
@@ -134,10 +147,6 @@ namespace Day10_BalanceBots
             Bot source = GetBot(sourceId);
             Bot destination = GetBot(destinationId);
 
-            //if (source.Values.Count != 2 || destination.Values.Count == 2)
-            //{
-            //    return false;
-            //}
             destination.Values.Add(source.Values.Min());
             source.Values.Remove(source.Values.Min());
             return true;
@@ -152,7 +161,7 @@ namespace Day10_BalanceBots
 
         private static void SetupRules()
         {
-            IEnumerable<string> ruleList = Input.Except(BotSetupList);
+            IEnumerable<string> ruleList = Input.Except(_botSetupList);
             foreach (string s in ruleList)
             {
                 Rules.Enqueue(s);
@@ -161,8 +170,8 @@ namespace Day10_BalanceBots
 
         private static void SetupBots()
         {
-            BotSetupList = Input.Where(x => x.StartsWith("Value", StringComparison.CurrentCultureIgnoreCase)).ToList();
-            foreach (string s in BotSetupList)
+            _botSetupList = Input.Where(x => x.StartsWith("Value", StringComparison.CurrentCultureIgnoreCase)).ToList();
+            foreach (string s in _botSetupList)
             {
                 MatchCollection values = BotRegex.Matches(s);
                 int value = Convert.ToInt32(values[0].Value);
