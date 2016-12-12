@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day12_Leonardos_Monorail
 // Created: 2016-12-12
-// Modified: 2016-12-12 9:10 PM
+// Modified: 2016-12-12 10:45 PM
 #endregion
 
 //#define TEST
@@ -10,6 +10,7 @@
 #region Using Directives
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -38,8 +39,17 @@ namespace Day12_Leonardos_Monorail
         static void Main(string[] args)
         {
             var index = 0;
+            var part2 = true;
+            if (part2)
+            {
+                Registers["c"] = 1;
+            }
+            Stopwatch sw = Stopwatch.StartNew();
             while (index < Instructions.Count)
             {
+                Console.WriteLine($"{index}: {Instructions[index]}");
+
+                DisplayRegisters();
                 string[] parts = Instructions[index].ToLower()
                                                     .Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
                 var nextStep = true;
@@ -86,14 +96,26 @@ namespace Day12_Leonardos_Monorail
                 {
                     index++;
                 }
+                Console.WriteLine("new register values:");
+                DisplayRegisters();
             }
+            sw.Stop();
+            DisplayRegisters();
+            Console.WriteLine($"Finished (finally!). Total time: {new TimeSpan(sw.ElapsedTicks):g}");
+            Console.ReadKey();
+        }
+
+        private static void DisplayRegisters()
+        {
+            Console.Clear();
             Console.WriteLine("Register values:");
             foreach (KeyValuePair<string, int> register in Registers)
             {
                 Console.WriteLine($"{register.Key.PadRight(5)}{register.Value.ToString().PadLeft(5)}");
             }
-            Console.Write("\nPress any key to continue...");
-            Console.ReadKey();
+
+            //Console.WriteLine("\nPress any key to continue...");
+            //Console.ReadKey();
         }
     }
 }
