@@ -1,11 +1,6 @@
-﻿#region Information
-
-// AdventOfCode: Day12_Leonardos_Monorail
-// Created: 2016-12-12
-// Modified: 2016-12-12 10:45 PM
-#endregion
-
-//#define TEST
+﻿// AdventOfCode: Day12_Leonardos_Monorail
+// Created: 2016-12-13
+// Modified: 2016-12-13 8:01 AM
 
 #region Using Directives
 using System;
@@ -47,9 +42,6 @@ namespace Day12_Leonardos_Monorail
             Stopwatch sw = Stopwatch.StartNew();
             while (index < Instructions.Count)
             {
-                Console.WriteLine($"{index}: {Instructions[index]}");
-
-                DisplayRegisters();
                 string[] parts = Instructions[index].ToLower()
                                                     .Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
                 var nextStep = true;
@@ -81,6 +73,7 @@ namespace Day12_Leonardos_Monorail
                     case "jnz":
 
                         // Jump if not zero
+                        // If register does not exist, use literal value
                         int registerValue = Registers.ContainsKey(parts[1])
                                                 ? Registers[parts[1]]
                                                 : Convert.ToInt32(parts[1]);
@@ -96,12 +89,10 @@ namespace Day12_Leonardos_Monorail
                 {
                     index++;
                 }
-                Console.WriteLine("new register values:");
-                DisplayRegisters();
             }
             sw.Stop();
             DisplayRegisters();
-            Console.WriteLine($"Finished (finally!). Total time: {new TimeSpan(sw.ElapsedTicks):g}");
+            Console.WriteLine($"Finished. Total time: {new TimeSpan(sw.ElapsedTicks):g}");
             Console.ReadKey();
         }
 
@@ -113,9 +104,6 @@ namespace Day12_Leonardos_Monorail
             {
                 Console.WriteLine($"{register.Key.PadRight(5)}{register.Value.ToString().PadLeft(5)}");
             }
-
-            //Console.WriteLine("\nPress any key to continue...");
-            //Console.ReadKey();
         }
     }
 }
