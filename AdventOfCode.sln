@@ -90,6 +90,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day12_Leonardos_Monorail", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day13_AMazeOfTwistyLittleCubicles", "Projects\2016\Day13_AMazeOfTwistyLittleCubicles\Day13_AMazeOfTwistyLittleCubicles.csproj", "{E873AE81-5EB9-4999-89E8-A97547900F0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day14_OneTimePad", "Projects\2016\Day14_OneTimePad\Day14_OneTimePad.csproj", "{4AE7B9B8-AC9D-4DB8-9A3A-4EADAA1C1C87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -378,6 +380,14 @@ Global
 		{E873AE81-5EB9-4999-89E8-A97547900F0F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E873AE81-5EB9-4999-89E8-A97547900F0F}.Release|x64.ActiveCfg = Release|Any CPU
 		{E873AE81-5EB9-4999-89E8-A97547900F0F}.Release|x64.Build.0 = Release|Any CPU
+		{4AE7B9B8-AC9D-4DB8-9A3A-4EADAA1C1C87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AE7B9B8-AC9D-4DB8-9A3A-4EADAA1C1C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AE7B9B8-AC9D-4DB8-9A3A-4EADAA1C1C87}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4AE7B9B8-AC9D-4DB8-9A3A-4EADAA1C1C87}.Debug|x64.Build.0 = Debug|Any CPU
+		{4AE7B9B8-AC9D-4DB8-9A3A-4EADAA1C1C87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AE7B9B8-AC9D-4DB8-9A3A-4EADAA1C1C87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AE7B9B8-AC9D-4DB8-9A3A-4EADAA1C1C87}.Release|x64.ActiveCfg = Release|Any CPU
+		{4AE7B9B8-AC9D-4DB8-9A3A-4EADAA1C1C87}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -420,5 +430,6 @@ Global
 		{B777B0D7-836F-46F0-8764-22FB4D8C1771} = {5628FDEA-45D3-4CBD-A657-57DB90768E2F}
 		{53C27C40-926A-4207-B61B-6E11A4C056D0} = {5628FDEA-45D3-4CBD-A657-57DB90768E2F}
 		{E873AE81-5EB9-4999-89E8-A97547900F0F} = {5628FDEA-45D3-4CBD-A657-57DB90768E2F}
+		{4AE7B9B8-AC9D-4DB8-9A3A-4EADAA1C1C87} = {5628FDEA-45D3-4CBD-A657-57DB90768E2F}
 	EndGlobalSection
 EndGlobal
