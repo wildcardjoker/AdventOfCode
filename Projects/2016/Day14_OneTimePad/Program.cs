@@ -2,11 +2,12 @@
 
 // AdventOfCode: Day14_OneTimePad
 // Created: 2016-12-14
-// Modified: 2016-12-14 11:01 PM
+// Modified: 2016-12-15 8:32 PM
 #endregion
 
 #region Using Directives
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
@@ -22,9 +23,13 @@ namespace Day14_OneTimePad
         private const string Salt = "cuanljph";
         private static readonly Regex KeyRegex = new Regex(@"(.)\1{2}");
         private static int _index = -1;
+        private static readonly Regex TripletRegex = new Regex(@"(\w)\1{2}");
+        private static readonly List<string> HashList = new List<string>();
+        private static readonly List<string> KeyList = new List<string>();
+        private static readonly MD5 Md5Hash = MD5.Create();
         #endregion
 
-        static void Main(string[] args)
+        static string Part1()
         {
             var keyCount = 0;
             Stopwatch sw = Stopwatch.StartNew();
@@ -32,7 +37,7 @@ namespace Day14_OneTimePad
             {
                 _index++;
 
-                string hash = GeneratePart2Hash(CalculateMd5Hash($"{Salt}{_index}"));
+                string hash = CalculateMd5Hash($"{Salt}{_index}");
                 Match match = KeyRegex.Match(hash);
                 if (!match.Success) continue;
 
@@ -49,28 +54,107 @@ namespace Day14_OneTimePad
 
                     // We found a matching sequence - this is a valid one-time key
                     keyCount++;
-                    Console.WriteLine($"Found {keyCount} keys...");
+                    Console.WriteLine(GenerateFoundKeyMessage(1, keyCount, nextHash, i));
 
                     // Don't bother calculating any remaining hashes - we've already found what we needed.
                     break;
                 }
             }
             sw.Stop();
-            string msg = $"64th key found at index {_index} in {new TimeSpan(sw.ElapsedTicks):g}.";
-
-            // Just in case I press the any key without catching the result :(
-            Debug.WriteLine(msg);
-            Console.WriteLine(msg);
-            Console.ReadKey();
+            return GenerateResultMessage(1, _index, sw);
         }
 
-        private static string GeneratePart2Hash(string hash)
+        private static string GenerateResultMessage(int part, int index, Stopwatch sw)
+            => $"Part {part}: 64th key found at index {index} in {new TimeSpan(sw.ElapsedTicks):g}.";
+
+        private static string GenerateFoundKeyMessage(int part, int count, string hash, int index)
+            => $"Part {part}: Found key {count.ToString().PadRight(3)}: {hash} (index {index})";
+
+        private static string Part2()
+        {
+            Stopwatch sw = Stopwatch.StartNew();
+            while (KeyList.Count < 64)
+            {
+                _index++;
+                string hash;
+                if (HashList.Count == _index)
+                {
+                    string hashSource = GenerateHashInput(_index);
+                    hash = AddHash(GenerateMd5Part2(hashSource));
+                }
+                else
+                {
+                    hash = HashList[_index];
+                }
+                Match triplet = TripletRegex.Match(hash);
+                if (!triplet.Success) continue;
+                var quintet = new string(triplet.Value[0], 5);
+                for (var i = 1; i <= 1000; i++)
+                {
+                    int index = _index + i;
+                    string nextHash = HashList.Count == index
+                                          ? AddHash(GenerateMd5Part2(GenerateHashInput(index)))
+                                          : HashList[index];
+                    if (!nextHash.Contains(quintet)) continue;
+                    KeyList.Add(nextHash);
+                    Console.WriteLine(GenerateFoundKeyMessage(2, KeyList.Count, nextHash, index));
+                    break;
+                }
+            }
+            sw.Stop();
+            Md5Hash.Dispose();
+            return GenerateResultMessage(2, _index, sw);
+        }
+
+        private static string GenerateHashInput(int index) => $"{Salt}{index}";
+
+        private static string AddHash(string input)
+        {
+            string hash = GetMd5Hash(input);
+            HashList.Add(hash);
+            return hash;
+        }
+
+        private static string GenerateMd5Part2(string input)
         {
             for (var i = 0; i < 2016; i++)
             {
-                hash = CalculateMd5Hash(hash);
+                input = GetMd5Hash(input);
             }
-            return hash;
+            return input;
+        }
+
+        private static string GetMd5Hash(string input)
+        {
+            // Convert the input string to a byte array and compute the hash.
+            byte[] data = Md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            // Create a new Stringbuilder to collect the bytes
+            // and create a string.
+            var sBuilder = new StringBuilder();
+
+            // Loop through each byte of the hashed data
+            // and format each one as a hexadecimal string.
+            foreach (byte t in data)
+            {
+                sBuilder.Append(t.ToString("x2"));
+            }
+
+            // Return the hexadecimal string.
+            return sBuilder.ToString();
+        }
+
+        static void Main(string[] args)
+        {
+            string part1Result = Part1();
+
+            // Reset the index for Part 2
+            _index = -1;
+
+            string part2Result = Part2();
+            Console.WriteLine(part1Result);
+            Console.WriteLine(part2Result);
+            Console.ReadKey();
         }
 
         /// <summary>
