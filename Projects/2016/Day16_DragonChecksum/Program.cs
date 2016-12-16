@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day16_DragonChecksum
 // Created: 2016-12-16
-// Modified: 2016-12-16 10:10 PM
+// Modified: 2016-12-16 10:35 PM
 #endregion
 
 #region Using Directives
@@ -21,8 +21,10 @@ namespace Day16_DragonChecksum
     {
         #region  Fields
 
-        // Puzzle input
-        private const int DiskLength = 272;
+        // Puzzle input - Part 1
+        //private const int DiskLength = 272;
+        // Puzzle input - Part 2
+        private const int DiskLength = 35651584;
         private static readonly Regex PairRegex = new Regex(".{2}");
         private static string _randomData = "11011110011011101";
         #endregion
@@ -51,7 +53,6 @@ namespace Day16_DragonChecksum
         {
             // Only use enough data to fill the disk.
             string data = _randomData.Substring(0, DiskLength);
-            Console.WriteLine($"Working with random data: {data}");
 
             // Keep calculating a checksum until we have an odd number of characters.
             while (data.Length % 2 == 0)
