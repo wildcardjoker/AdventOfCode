@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day15_TimingIsEverything
 // Created: 2016-12-15
-// Modified: 2016-12-16 6:58 PM
+// Modified: 2016-12-16 7:05 PM
 #endregion
 
 #region Using Directives
@@ -24,7 +24,7 @@ namespace Day15_TimingIsEverything
     class Program
     {
         #region  Fields
-        private static readonly string[] Input = File.ReadAllLines("testinput.txt");
+        private static readonly string[] Input = File.ReadAllLines("input.txt");
         private static readonly List<Disc> Discs = new List<Disc>();
         #endregion
 
@@ -65,53 +65,34 @@ namespace Day15_TimingIsEverything
                 time++;
 
                 // Capsule falls
-                var capsulePresent = false;
-
-                // Start with first disc
-                var index = 0;
-
-                // While a capsule has not fallen through, and there are still discs to check
-                while (!capsulePresent && index != Discs.Count - 1)
-                {
-                    //If this disc has a ball, record that fact
-                    if (Discs[index].HasCapsule)
-                    {
-                        capsulePresent = true;
-                    }
-
-                    // Go to the next one
-                    index++;
-                }
+                bool capsulePresent = Discs.Any(x => x.HasCapsule);
 
                 // If a capsule isn't passing through the discs already,
                 // maybe one can begin it's journey.
                 if (!capsulePresent)
                 {
                     // Is the first disc in the correct position?
-                    if (Discs[0].Position == 0)
-                    {
-                        // Yes it is
-                        Discs[0].HasCapsule = true;
-                    }
+                    Discs[0].HasCapsule = Discs[0].Position == 0;
                     continue;
                 }
 
                 // Check each disc.
                 for (var i = 0; i < Discs.Count - 1; i++)
                 {
-                    // If a disc has a capsule...
-                    if (Discs[i].HasCapsule)
-                    {
-                        // It drops to the next disc, or bounces away
-                        Discs[i].HasCapsule = false;
-                        if (Discs[i + 1].Position != 0)
-                        {
-                            break; // Ball bounced away!
-                        }
+                    // If the disc doesn't have a capsule,
+                    // try the next one.
+                    if (!Discs[i].HasCapsule) continue;
 
-                        // Ball fell through to the next disc.
-                        Discs[i + 1].HasCapsule = true;
+                    // Disc has a capsule.
+                    // It drops to the next disc, or bounces away
+                    Discs[i].HasCapsule = false;
+                    if (Discs[i + 1].Position != 0)
+                    {
+                        break; // Ball bounced away!
                     }
+
+                    // Ball fell through to the next disc.
+                    Discs[i + 1].HasCapsule = true;
                 }
             }
 
