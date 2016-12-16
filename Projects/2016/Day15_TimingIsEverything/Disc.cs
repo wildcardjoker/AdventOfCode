@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day15_TimingIsEverything
 // Created: 2016-12-15
-// Modified: 2016-12-16 6:53 PM
+// Modified: 2016-12-16 8:21 PM
 #endregion
 
 namespace Day15_TimingIsEverything
@@ -10,9 +10,8 @@ namespace Day15_TimingIsEverything
     class Disc
     {
         #region Constructors
-        public Disc(int id, int sides, int position)
+        public Disc(int sides, int position)
         {
-            Id = id;
             Sides = sides;
             Position = position;
         }
@@ -20,7 +19,6 @@ namespace Day15_TimingIsEverything
 
         #region Properties
         public bool HasCapsule { get; set; }
-        public int Id { get; set; }
         public int Position { get; private set; }
         public int Sides { get; set; }
         #endregion
