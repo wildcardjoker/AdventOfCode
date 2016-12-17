@@ -2,16 +2,13 @@
 
 // AdventOfCode: Day16_DragonChecksum
 // Created: 2016-12-16
-// Modified: 2016-12-16 10:35 PM
+// Modified: 2016-12-17 9:38 AM
 #endregion
 
 #region Using Directives
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 
 #endregion
 
@@ -25,7 +22,6 @@ namespace Day16_DragonChecksum
         //private const int DiskLength = 272;
         // Puzzle input - Part 2
         private const int DiskLength = 35651584;
-        private static readonly Regex PairRegex = new Regex(".{2}");
         private static string _randomData = "11011110011011101";
         #endregion
 
@@ -34,16 +30,19 @@ namespace Day16_DragonChecksum
             // Generate random data until we have at least enough to fill the disk.
             while (_randomData.Length < DiskLength)
             {
-                GenerateData();
+                _randomData =
+                    $"{_randomData}0{new string(_randomData.Reverse().ToArray()).Replace('1', '-').Replace('0', '1').Replace('-', '0')}";
             }
 
             // Generate the checksum
             string checksum = GenerateChecksum();
-            string message = $"Checksum: {checksum}";
-            Console.WriteLine(message);
-            Debug.WriteLine(message); // Easier to copy/paste answer.
+            bool matchpuzzleAnswer = checksum.Equals("00011010100010010");
+            Console.WriteLine(
+                $"Found checksum {checksum}, and it {(matchpuzzleAnswer ? "matches" : "DOES NOT match")}.");
             Console.ReadKey();
         }
+
+        private static void GetChecksum(int part, string input) {}
 
         /// <summary>
         ///     Generates the checksum.
@@ -59,13 +58,10 @@ namespace Day16_DragonChecksum
             {
                 var checksum = new StringBuilder();
 
-                // Use regular expression to split the checksum into sets of two characters.
-                MatchCollection matches = PairRegex.Matches(data);
-
-                // Generate a new checksum value based on each pair.
-                foreach (Match match in matches)
+                // Check each pair of characters and generate a new checksum.
+                for (var i = 0; i < data.Length - 1; i += 2)
                 {
-                    checksum.Append(GenerateChecksumValue(match.Value));
+                    checksum.Append(data[i].Equals(data[i + 1]) ? '1' : '0');
                 }
 
                 // Update the data to calculate a checksum from.
@@ -74,33 +70,6 @@ namespace Day16_DragonChecksum
 
             // Checksum length is an odd number - return the value.
             return data;
-        }
-
-        /// <summary>
-        ///     Generates the checksum value.
-        /// </summary>
-        /// <param name="pair">A pair of characters.</param>
-        /// <returns>1 if both characters are the same (00 or 11), 0 if the characters are different (01,10)</returns>
-        private static string GenerateChecksumValue(string pair) => pair[0].Equals(pair[1]) ? "1" : "0";
-
-        private static void GenerateData()
-        {
-            // Copy input and reverse it.
-            IEnumerable<char> reverseInput = _randomData.Reverse();
-
-            // Generate a StringBuilder for Random Data Generation.
-            // Use original input + "0", then append the inverse of reverseInput.
-            var sb = new StringBuilder(_randomData);
-            sb.Append("0");
-
-            // Loop through ReverseInput, and replace 0 with 1 and vice versa
-            foreach (char c in reverseInput)
-            {
-                sb.Append(c.Equals('0') ? '1' : '0');
-            }
-
-            // Update random data.
-            _randomData = sb.ToString();
         }
     }
 }
