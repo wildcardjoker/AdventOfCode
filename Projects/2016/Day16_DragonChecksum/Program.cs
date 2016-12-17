@@ -2,11 +2,12 @@
 
 // AdventOfCode: Day16_DragonChecksum
 // Created: 2016-12-16
-// Modified: 2016-12-17 9:52 AM
+// Modified: 2016-12-17 10:01 AM
 #endregion
 
 #region Using Directives
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -28,9 +29,17 @@ namespace Day16_DragonChecksum
 
         static void Main(string[] args)
         {
-            GetChecksum(1, DiskLengthPart1);
-            GetChecksum(2, DiskLengthPart2);
+            Console.WriteLine(TimeResult(1, DiskLengthPart1));
+            Console.WriteLine(TimeResult(2, DiskLengthPart2));
             Console.ReadKey();
+        }
+
+        private static string TimeResult(int part, int diskLength)
+        {
+            Stopwatch sw = Stopwatch.StartNew();
+            GetChecksum(part, diskLength);
+            sw.Stop();
+            return $"Part {part} completed in {new TimeSpan(sw.ElapsedTicks):g}.";
         }
 
         private static void GetChecksum(int part, int diskLength)
