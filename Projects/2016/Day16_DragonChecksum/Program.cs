@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day16_DragonChecksum
 // Created: 2016-12-16
-// Modified: 2016-12-17 9:38 AM
+// Modified: 2016-12-17 9:52 AM
 #endregion
 
 #region Using Directives
@@ -19,39 +19,44 @@ namespace Day16_DragonChecksum
         #region  Fields
 
         // Puzzle input - Part 1
-        //private const int DiskLength = 272;
+        private const int DiskLengthPart1 = 272;
+
         // Puzzle input - Part 2
-        private const int DiskLength = 35651584;
-        private static string _randomData = "11011110011011101";
+        private const int DiskLengthPart2 = 35651584;
+        private static readonly string _input = "11011110011011101";
         #endregion
 
         static void Main(string[] args)
         {
-            // Generate random data until we have at least enough to fill the disk.
-            while (_randomData.Length < DiskLength)
-            {
-                _randomData =
-                    $"{_randomData}0{new string(_randomData.Reverse().ToArray()).Replace('1', '-').Replace('0', '1').Replace('-', '0')}";
-            }
-
-            // Generate the checksum
-            string checksum = GenerateChecksum();
-            bool matchpuzzleAnswer = checksum.Equals("00011010100010010");
-            Console.WriteLine(
-                $"Found checksum {checksum}, and it {(matchpuzzleAnswer ? "matches" : "DOES NOT match")}.");
+            GetChecksum(1, DiskLengthPart1);
+            GetChecksum(2, DiskLengthPart2);
             Console.ReadKey();
         }
 
-        private static void GetChecksum(int part, string input) {}
+        private static void GetChecksum(int part, int diskLength)
+        {
+            string input = _input;
+
+            // Generate random data until we have at least enough to fill the disk.
+            while (input.Length < diskLength)
+            {
+                input =
+                    $"{input}0{new string(input.Reverse().ToArray()).Replace('1', '-').Replace('0', '1').Replace('-', '0')}";
+            }
+
+            // Generate the checksum
+            string checksum = GenerateChecksum(input.Substring(0, diskLength));
+            Console.WriteLine($"Part {part}: Found checksum {checksum}.");
+        }
 
         /// <summary>
         ///     Generates the checksum.
         /// </summary>
         /// <returns></returns>
-        private static string GenerateChecksum()
+        private static string GenerateChecksum(string input)
         {
             // Only use enough data to fill the disk.
-            string data = _randomData.Substring(0, DiskLength);
+            string data = input;
 
             // Keep calculating a checksum until we have an odd number of characters.
             while (data.Length % 2 == 0)
