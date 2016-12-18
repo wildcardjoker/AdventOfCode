@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day18_LikeARogue
 // Created: 2016-12-18
-// Modified: 2016-12-18 7:00 PM
+// Modified: 2016-12-18 7:09 PM
 #endregion
 
 #region Using Directives
@@ -17,7 +17,8 @@ namespace Day18_LikeARogue
     class Program
     {
         #region  Fields
-        private const int maxRows = 40;
+        private const int MaxRowsPartOne = 40;
+        private const int MaxRowsPartTwo = 400000;
         private static char[] _trapTileSource = new char[3];
 
         private static readonly char[] StartRow =
@@ -27,16 +28,22 @@ namespace Day18_LikeARogue
 
         static void Main(string[] args)
         {
+            int maxRows = MaxRowsPartTwo;
             Console.Title = "Advent Of Code: Day 18";
-            Console.WindowWidth = StartRow.Length + 1;
-            Console.WindowHeight = maxRows + 2;
+            CalculateSafeTiles(MaxRowsPartOne);
+            CalculateSafeTiles(MaxRowsPartTwo);
+            Console.ReadKey();
+        }
+
+        private static void CalculateSafeTiles(int maxRows)
+        {
             char[] row = StartRow;
             var numRows = 0;
             var totalSafeTiles = 0;
             while (numRows < maxRows)
             {
                 int safeTileCount = row.Count(c => c.Equals('.'));
-                Console.WriteLine(string.Join(string.Empty, row));
+
                 totalSafeTiles += safeTileCount;
                 var nextRow = new List<char>();
                 for (var i = 0; i < row.Length; i++)
@@ -51,9 +58,9 @@ namespace Day18_LikeARogue
                 row = nextRow.ToArray();
                 numRows++;
             }
-            Console.WriteLine(
-                $"There are {totalSafeTiles} safe tiles in this room and {(StartRow.Length * maxRows) - totalSafeTiles} traps. Watch your step!");
-            Console.ReadKey();
+            Console.WriteLine($"In a room with {maxRows} rows:");
+            Console.WriteLine($"{$"There are {totalSafeTiles} safe tiles".PadLeft(6)}");
+            ;
         }
 
         private static char SetTile()
