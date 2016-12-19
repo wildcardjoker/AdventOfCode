@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day19_AnElephantNamedJoseph
 // Created: 2016-12-19
-// Modified: 2016-12-19 7:46 PM
+// Modified: 2016-12-19 8:11 PM
 #endregion
 
 #region Using Directives
@@ -18,16 +18,25 @@ namespace Day19_AnElephantNamedJoseph
     /// </summary>
     class Program
     {
+        #region  Fields
+
+        // Number of elves at the White Elephant party. (puzzle input)
+        private const uint NumEleves = 3001330;
+        #endregion
+
         static void Main(string[] args)
         {
-            // Number of elves at the White Elephant party. (puzzle input)
-            uint numEleves = 3001330;
-
-            // Get the highest power of two that is less than the number of Elves.
-            uint highestPowerOfTwo = GethighestPowerOfTwo(numEleves);
-            Console.WriteLine((numEleves - highestPowerOfTwo) * 2 + 1);
+            PartOne();
             Console.WriteLine("press any key.");
             Console.ReadKey();
+        }
+
+        private static void PartOne()
+        {
+            // Get the highest power of two that is less than the number of Elves.
+            uint highestPowerOfTwo = GetHighestPowerOfTwo(NumEleves);
+            uint elfId = (NumEleves - highestPowerOfTwo) * 2 + 1;
+            Console.WriteLine($"Part 1: Elf {elfId} steals all the presents!");
         }
 
         /// <summary>
@@ -35,7 +44,7 @@ namespace Day19_AnElephantNamedJoseph
         /// </summary>
         /// <param name="x">The number being processed.</param>
         /// <returns></returns>
-        static uint GethighestPowerOfTwo(uint x)
+        private static uint GetHighestPowerOfTwo(uint x)
         {
             x = x | (x >> 1);
             x = x | (x >> 2);
