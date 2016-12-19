@@ -35,7 +35,7 @@ namespace Day19_AnElephantNamedJoseph
         /// </summary>
         /// <param name="x">The number being processed.</param>
         /// <returns></returns>
-        static UInt32 GethighestPowerOfTwo(UInt32 x)
+        static uint GethighestPowerOfTwo(uint x)
         {
             x = x | (x >> 1);
             x = x | (x >> 2);
