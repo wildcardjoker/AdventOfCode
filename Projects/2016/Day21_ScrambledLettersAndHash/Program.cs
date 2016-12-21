@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day21_ScrambledLettersAndHash
 // Created: 2016-12-21
-// Modified: 2016-12-21 9:38 PM
+// Modified: 2016-12-21 9:52 PM
 #endregion
 
 #region Using Directives
@@ -41,7 +41,7 @@ namespace Day21_ScrambledLettersAndHash
             // Can't use a switch statement on substring.
             if (instruction.StartsWith("swap position"))
             {
-                SwapPosXPosY(Convert.ToInt32(matches[0]), Convert.ToInt32(matches[1]));
+                SwapPosXPosY(Convert.ToInt32(matches[0].Value), Convert.ToInt32(matches[1].Value));
                 return;
             }
             if (instruction.StartsWith("swap letter"))
@@ -67,12 +67,12 @@ namespace Day21_ScrambledLettersAndHash
             }
             if (instruction.StartsWith("reverse"))
             {
-                ReversePositionsXThroughY(Convert.ToInt32(matches[0]), Convert.ToInt32(matches[1]));
+                ReversePositionsXThroughY(Convert.ToInt32(matches[0].Value), Convert.ToInt32(matches[1].Value));
                 return;
             }
 
             // Only one instruction left - move position x to position y
-            MovePosXToPosY(Convert.ToInt32(matches[0]), Convert.ToInt32(matches[1]));
+            MovePosXToPosY(Convert.ToInt32(matches[0].Value), Convert.ToInt32(matches[1].Value));
         }
 
         #region Scramblers
@@ -123,7 +123,9 @@ namespace Day21_ScrambledLettersAndHash
 
         static void ReversePositionsXThroughY(int x, int y)
         {
-            Input.Reverse(x, y);
+            // Reverse parameters are index,count.
+            // Without the +1, Reverse() misses a character.
+            Input.Reverse(x, y + 1);
         }
 
         static void MovePosXToPosY(int x, int y)
