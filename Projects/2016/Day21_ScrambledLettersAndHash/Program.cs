@@ -2,12 +2,13 @@
 
 // AdventOfCode: Day21_ScrambledLettersAndHash
 // Created: 2016-12-21
-// Modified: 2016-12-21 10:06 PM
+// Modified: 2016-12-21 10:57 PM
 #endregion
 
 #region Using Directives
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -21,20 +22,39 @@ namespace Day21_ScrambledLettersAndHash
         #region  Fields
 
         // Test input
-        //private static readonly List<char> Input = "abcde".ToList();
+        //private static List<char> Input = "abcde".ToList();
         //private static readonly string[] Instructions = File.ReadAllLines("testinput.txt");
+
         private static readonly List<char> Input = "abcdefgh".ToList();
         private static readonly string[] Instructions = File.ReadAllLines("input.txt");
         private static readonly Regex NumberRegex = new Regex(@"\d+");
+        private static bool IsPartTwo;
         #endregion
 
         static void Main(string[] args)
         {
+            // Part 1
+            var scrambles = new List<string> {new string(Input.ToArray())};
             foreach (string instruction in Instructions)
             {
                 ProcessInstruction(instruction);
+                scrambles.Add(new string(Input.ToArray()));
             }
-            Console.WriteLine($"Scrambled password: {new string(Input.ToArray())}");
+            File.WriteAllLines("scrambled.txt", scrambles);
+            string message = $"Scrambled password: {new string(Input.ToArray())}";
+            Console.WriteLine(message);
+            Debug.WriteLine(message);
+
+            // Part 2
+            //Input = "fbgdceah".ToList();
+            IsPartTwo = true;
+            foreach (string instruction in Instructions.Reverse())
+            {
+                ProcessInstruction(instruction);
+            }
+            message = $"Decrypted password: {new string(Input.ToArray())}";
+            Console.WriteLine(message);
+            Debug.WriteLine(message);
             Console.ReadKey();
         }
 
@@ -56,12 +76,28 @@ namespace Day21_ScrambledLettersAndHash
             }
             if (instruction.StartsWith("rotate left"))
             {
-                RotateLeft(Convert.ToInt32(matches[0].Value));
+                int steps = Convert.ToInt32(matches[0].Value);
+                if (IsPartTwo)
+                {
+                    RotateRight(steps);
+                }
+                else
+                {
+                    RotateLeft(steps);
+                }
                 return;
             }
             if (instruction.StartsWith("rotate right"))
             {
-                RotateRight(Convert.ToInt32(matches[0].Value));
+                int steps = Convert.ToInt32(matches[0].Value);
+                if (IsPartTwo)
+                {
+                    RotateLeft(steps);
+                }
+                else
+                {
+                    RotateRight(steps);
+                }
                 return;
             }
             if (instruction.StartsWith("rotate based"))
@@ -120,16 +156,49 @@ namespace Day21_ScrambledLettersAndHash
         static void RotateOnPosition(char c)
         {
             int index = Input.IndexOf(c);
+            int steps = index + (index >= 4 ? 2 : 1);
 
             // Rotate index+1, +1 again if index>= 4
-            RotateRight(index + (index >= 4 ? 2 : 1));
+            if (IsPartTwo)
+            {
+                // Inverse rotation - https://www.reddit.com/r/adventofcode/comments/5ji29h/2016_day_21_solutions/dbgkbpv/
+                switch (index)
+                {
+                    case 0:
+                    case 1:
+                        RotateLeft(1);
+                        break;
+                    case 2:
+                        RotateRight(2);
+                        break;
+                    case 3:
+                        RotateLeft(2);
+                        break;
+                    case 4:
+                        RotateRight(1);
+                        break;
+                    case 5:
+                        RotateLeft(3);
+                        break;
+                    case 6:
+                        RotateRight(steps);
+                        break;
+                    case 7:
+                        RotateRight(4);
+                        break;
+                }
+            }
+            else
+            {
+                RotateRight(steps);
+            }
         }
 
         static void ReversePositionsXThroughY(int x, int y)
         {
             // Reverse parameters are index,count.
             // Without the +1, Reverse() misses a character.
-            Input.Reverse(x, (y-x) + 1);
+            Input.Reverse(x, (y - x) + 1);
         }
 
         static void MovePosXToPosY(int x, int y)
