@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day21_ScrambledLettersAndHash
 // Created: 2016-12-21
-// Modified: 2016-12-21 9:52 PM
+// Modified: 2016-12-21 10:02 PM
 #endregion
 
 #region Using Directives
@@ -30,7 +30,7 @@ namespace Day21_ScrambledLettersAndHash
             {
                 ProcessInstruction(instruction);
             }
-            Console.WriteLine($"Scrambled password: {Input}");
+            Console.WriteLine($"Scrambled password: {new string(Input.ToArray())}");
             Console.ReadKey();
         }
 
@@ -52,7 +52,7 @@ namespace Day21_ScrambledLettersAndHash
             }
             if (instruction.StartsWith("rotate left"))
             {
-                RotateLeft(Convert.ToInt32(matches[0]));
+                RotateLeft(Convert.ToInt32(matches[0].Value));
                 return;
             }
             if (instruction.StartsWith("rotate right"))
@@ -118,7 +118,7 @@ namespace Day21_ScrambledLettersAndHash
             int index = Input.IndexOf(c);
 
             // Rotate index+1, +1 again if index>= 4
-            RotateRight(index + index >= 4 ? 2 : 1);
+            RotateRight(index + (index >= 4 ? 2 : 1));
         }
 
         static void ReversePositionsXThroughY(int x, int y)
