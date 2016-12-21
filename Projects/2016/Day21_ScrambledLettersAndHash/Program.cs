@@ -2,13 +2,15 @@
 
 // AdventOfCode: Day21_ScrambledLettersAndHash
 // Created: 2016-12-21
-// Modified: 2016-12-21 9:09 PM
+// Modified: 2016-12-21 9:38 PM
 #endregion
 
 #region Using Directives
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 #endregion
 
@@ -18,11 +20,62 @@ namespace Day21_ScrambledLettersAndHash
     {
         #region  Fields
         private static readonly List<char> Input = "abcde".ToList();
-        private static string[] Instructions = File.ReadAllLines("testinput.txt");
+        private static readonly string[] Instructions = File.ReadAllLines("testinput.txt");
+        private static readonly Regex NumberRegex = new Regex(@"\d+");
         #endregion
 
-        static void Main(string[] args) {}
+        static void Main(string[] args)
+        {
+            foreach (string instruction in Instructions)
+            {
+                ProcessInstruction(instruction);
+            }
+            Console.WriteLine($"Scrambled password: {Input}");
+            Console.ReadKey();
+        }
 
+        static void ProcessInstruction(string instruction)
+        {
+            MatchCollection matches = NumberRegex.Matches(instruction);
+
+            // Can't use a switch statement on substring.
+            if (instruction.StartsWith("swap position"))
+            {
+                SwapPosXPosY(Convert.ToInt32(matches[0]), Convert.ToInt32(matches[1]));
+                return;
+            }
+            if (instruction.StartsWith("swap letter"))
+            {
+                string[] words = instruction.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+                SwapLetterWithLetter(words[2][0], words[5][0]);
+                return;
+            }
+            if (instruction.StartsWith("rotate left"))
+            {
+                RotateLeft(Convert.ToInt32(matches[0]));
+                return;
+            }
+            if (instruction.StartsWith("rotate right"))
+            {
+                RotateRight(Convert.ToInt32(matches[0]));
+                return;
+            }
+            if (instruction.StartsWith("rotate based"))
+            {
+                RotateOnPosition(instruction.Last());
+                return;
+            }
+            if (instruction.StartsWith("reverse"))
+            {
+                ReversePositionsXThroughY(Convert.ToInt32(matches[0]), Convert.ToInt32(matches[1]));
+                return;
+            }
+
+            // Only one instruction left - move position x to position y
+            MovePosXToPosY(Convert.ToInt32(matches[0]), Convert.ToInt32(matches[1]));
+        }
+
+        #region Scramblers
         static void SwapPosXPosY(int x, int y)
         {
             char temp = Input[x];
@@ -79,5 +132,6 @@ namespace Day21_ScrambledLettersAndHash
             Input.RemoveAt(x);
             Input.Insert(y, temp);
         }
+        #endregion
     }
 }
