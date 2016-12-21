@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day21_ScrambledLettersAndHash
 // Created: 2016-12-21
-// Modified: 2016-12-21 10:02 PM
+// Modified: 2016-12-21 10:06 PM
 #endregion
 
 #region Using Directives
@@ -19,8 +19,12 @@ namespace Day21_ScrambledLettersAndHash
     class Program
     {
         #region  Fields
-        private static readonly List<char> Input = "abcde".ToList();
-        private static readonly string[] Instructions = File.ReadAllLines("testinput.txt");
+
+        // Test input
+        //private static readonly List<char> Input = "abcde".ToList();
+        //private static readonly string[] Instructions = File.ReadAllLines("testinput.txt");
+        private static readonly List<char> Input = "abcdefgh".ToList();
+        private static readonly string[] Instructions = File.ReadAllLines("input.txt");
         private static readonly Regex NumberRegex = new Regex(@"\d+");
         #endregion
 
@@ -57,7 +61,7 @@ namespace Day21_ScrambledLettersAndHash
             }
             if (instruction.StartsWith("rotate right"))
             {
-                RotateRight(Convert.ToInt32(matches[0]));
+                RotateRight(Convert.ToInt32(matches[0].Value));
                 return;
             }
             if (instruction.StartsWith("rotate based"))
@@ -125,7 +129,7 @@ namespace Day21_ScrambledLettersAndHash
         {
             // Reverse parameters are index,count.
             // Without the +1, Reverse() misses a character.
-            Input.Reverse(x, y + 1);
+            Input.Reverse(x, (y-x) + 1);
         }
 
         static void MovePosXToPosY(int x, int y)
