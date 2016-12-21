@@ -104,6 +104,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day19_AnElephantNamedJoseph
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day20_FirewallRules", "Projects\2016\Day20_FirewallRules\Day20_FirewallRules.csproj", "{B478A8FC-7E8B-404E-A88B-19671A6E2811}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day21_ScrambledLettersAndHash", "Projects\2016\Day21_ScrambledLettersAndHash\Day21_ScrambledLettersAndHash.csproj", "{A3BCCC73-046B-42CC-89BE-C2FBC2E65BA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -448,6 +450,14 @@ Global
 		{B478A8FC-7E8B-404E-A88B-19671A6E2811}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B478A8FC-7E8B-404E-A88B-19671A6E2811}.Release|x64.ActiveCfg = Release|Any CPU
 		{B478A8FC-7E8B-404E-A88B-19671A6E2811}.Release|x64.Build.0 = Release|Any CPU
+		{A3BCCC73-046B-42CC-89BE-C2FBC2E65BA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3BCCC73-046B-42CC-89BE-C2FBC2E65BA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3BCCC73-046B-42CC-89BE-C2FBC2E65BA8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A3BCCC73-046B-42CC-89BE-C2FBC2E65BA8}.Debug|x64.Build.0 = Debug|Any CPU
+		{A3BCCC73-046B-42CC-89BE-C2FBC2E65BA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3BCCC73-046B-42CC-89BE-C2FBC2E65BA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3BCCC73-046B-42CC-89BE-C2FBC2E65BA8}.Release|x64.ActiveCfg = Release|Any CPU
+		{A3BCCC73-046B-42CC-89BE-C2FBC2E65BA8}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -497,5 +507,6 @@ Global
 		{3310BB4D-A712-4727-B337-53EFF1F65C36} = {5628FDEA-45D3-4CBD-A657-57DB90768E2F}
 		{4441AF2D-E43D-4CC6-B465-91BE1F80F01F} = {5628FDEA-45D3-4CBD-A657-57DB90768E2F}
 		{B478A8FC-7E8B-404E-A88B-19671A6E2811} = {5628FDEA-45D3-4CBD-A657-57DB90768E2F}
+		{A3BCCC73-046B-42CC-89BE-C2FBC2E65BA8} = {5628FDEA-45D3-4CBD-A657-57DB90768E2F}
 	EndGlobalSection
 EndGlobal
