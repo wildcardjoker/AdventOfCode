@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day21_ScrambledLettersAndHash
 // Created: 2016-12-21
-// Modified: 2016-12-21 10:57 PM
+// Modified: 2016-12-22 6:49 PM
 #endregion
 
 #region Using Directives
@@ -25,29 +25,26 @@ namespace Day21_ScrambledLettersAndHash
         //private static List<char> Input = "abcde".ToList();
         //private static readonly string[] Instructions = File.ReadAllLines("testinput.txt");
 
-        private static readonly List<char> Input = "abcdefgh".ToList();
+        private static List<char> Input = "abcdefgh".ToList();
         private static readonly string[] Instructions = File.ReadAllLines("input.txt");
         private static readonly Regex NumberRegex = new Regex(@"\d+");
-        private static bool IsPartTwo;
+        private static bool _isPartTwo;
         #endregion
 
         static void Main(string[] args)
         {
             // Part 1
-            var scrambles = new List<string> {new string(Input.ToArray())};
             foreach (string instruction in Instructions)
             {
                 ProcessInstruction(instruction);
-                scrambles.Add(new string(Input.ToArray()));
             }
-            File.WriteAllLines("scrambled.txt", scrambles);
             string message = $"Scrambled password: {new string(Input.ToArray())}";
             Console.WriteLine(message);
             Debug.WriteLine(message);
 
             // Part 2
-            //Input = "fbgdceah".ToList();
-            IsPartTwo = true;
+            Input = "fbgdceah".ToList();
+            _isPartTwo = true;
             foreach (string instruction in Instructions.Reverse())
             {
                 ProcessInstruction(instruction);
@@ -77,7 +74,7 @@ namespace Day21_ScrambledLettersAndHash
             if (instruction.StartsWith("rotate left"))
             {
                 int steps = Convert.ToInt32(matches[0].Value);
-                if (IsPartTwo)
+                if (_isPartTwo)
                 {
                     RotateRight(steps);
                 }
@@ -90,7 +87,7 @@ namespace Day21_ScrambledLettersAndHash
             if (instruction.StartsWith("rotate right"))
             {
                 int steps = Convert.ToInt32(matches[0].Value);
-                if (IsPartTwo)
+                if (_isPartTwo)
                 {
                     RotateLeft(steps);
                 }
@@ -112,7 +109,8 @@ namespace Day21_ScrambledLettersAndHash
             }
 
             // Only one instruction left - move position x to position y
-            MovePosXToPosY(Convert.ToInt32(matches[0].Value), Convert.ToInt32(matches[1].Value));
+            MovePosXToPosY(Convert.ToInt32(matches[_isPartTwo ? 1 : 0].Value),
+                           Convert.ToInt32(matches[_isPartTwo ? 0 : 1].Value));
         }
 
         #region Scramblers
@@ -159,7 +157,7 @@ namespace Day21_ScrambledLettersAndHash
             int steps = index + (index >= 4 ? 2 : 1);
 
             // Rotate index+1, +1 again if index>= 4
-            if (IsPartTwo)
+            if (_isPartTwo)
             {
                 // Inverse rotation - https://www.reddit.com/r/adventofcode/comments/5ji29h/2016_day_21_solutions/dbgkbpv/
                 switch (index)
