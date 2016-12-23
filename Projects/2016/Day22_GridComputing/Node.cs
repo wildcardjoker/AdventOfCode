@@ -2,7 +2,7 @@
 
 // AdventOfCode: Day22_GridComputing
 // Created: 2016-12-23
-// Modified: 2016-12-23 9:16 PM
+// Modified: 2016-12-23 9:26 PM
 #endregion
 
 #region Using Directives
@@ -30,10 +30,6 @@ namespace Day22_GridComputing
         public Node(string data)
         {
             MatchCollection matches = DigitRegex.Matches(data);
-            if (matches.Count != 6)
-            {
-                return;
-            }
             PosX = Convert.ToInt32(matches[0].Value);
             PosY = Convert.ToInt32(matches[1].Value);
             Size = Convert.ToInt32(matches[2].Value);
