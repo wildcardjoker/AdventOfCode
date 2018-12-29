@@ -96,8 +96,8 @@ namespace Day14_OneTimePad
                                           ? AddHash(GenerateMd5Part2(GenerateHashInput(index)))
                                           : HashList[index];
                     if (!nextHash.Contains(quintet)) continue;
-                    KeyList.Add(nextHash);
-                    Console.WriteLine(GenerateFoundKeyMessage(2, KeyList.Count, nextHash, index));
+                    KeyList.Add(hash);
+                    Console.WriteLine(GenerateFoundKeyMessage(2, KeyList.Count, hash, _index));
                     break;
                 }
             }
