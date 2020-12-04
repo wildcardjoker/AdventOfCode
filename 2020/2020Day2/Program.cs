@@ -17,15 +17,23 @@ namespace _2020Day2
 
         private static void Main(string[] args)
         {
-            var inputFilename = "Input.txt"; // "Sample.txt";
+            // var inputFilename = "Sample.txt";
+            var inputFilename = "Input.txt";
             _input = File.ReadAllLines(inputFilename).Select(x => new PasswordPolicy(x)).ToList();
             PartOne();
+            PartTwo();
         }
 
         private static void PartOne()
         {
-            var validPasswords = _input.Count(x => x.IsValid);
+            var validPasswords = _input.Count(x => x.IsValidForSled);
             Console.WriteLine($"Part One: Found {validPasswords} valid passwords.");
+        }
+
+        private static void PartTwo()
+        {
+            var validPasswords = _input.Count(x => x.IsValidForToboggan);
+            Console.WriteLine($"Part Two: Found {validPasswords} valid passwords.");
         }
     }
 }
